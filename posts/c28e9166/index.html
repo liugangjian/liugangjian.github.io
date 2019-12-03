@@ -6,22 +6,11 @@
   <title>Memory structure | Culturelle</title>
   <meta name="author" content="Gangjian Liu">
   
-  <meta name="description" content="Chapter 2. The Structure of the Java Virtual Machine
-程序计数器
-    
-    
-    
+  <meta name="description" content="内存结构
 
 
-定义Program Counter Register 程序计数器（寄存器）
-
-作用
-记住下一条jvm指令的执行地址
-
-
-特点
-是线程私有的
-不会存在">
+JVM 是可运行Java 代码的假想计算机，包括一套字节码指令集、一组寄存器、一个栈、一个垃圾回收，堆 和 一个存储方法域。JVM 是运行在操作系统之上的，它与硬件没有直接的交互。
+Chapter 2. The Structure of the Java Virtual Machine">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -84,7 +73,18 @@
 	
 
 	  <!-- content -->
-	  <p><a href="https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html" target="_blank" rel="noopener">Chapter 2. The Structure of the Java Virtual Machine</a></p>
+	  <center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/kG0PhGXD/16.jpg" width="100%">
+    <p>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">内存结构</div>
+</p></center>
+
+<p>JVM 是可运行Java 代码的假想计算机，包括一套字节码指令集、一组寄存器、一个栈、一个垃圾回收，堆 和 一个存储方法域。JVM 是运行在操作系统之上的，它与硬件没有直接的交互。</p>
+<p><a href="https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html" target="_blank" rel="noopener">Chapter 2. The Structure of the Java Virtual Machine</a></p>
 <h2 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h2><center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/7ZGgFfsN/1.png" width="100%">
@@ -103,7 +103,7 @@
 </li>
 <li>特点<ul>
 <li>是<code>线程私有</code>的</li>
-<li><strong>不会存在内存溢出</strong></li>
+<li><strong>唯一一个不会存在内存溢出的区域</strong></li>
 </ul>
 </li>
 </ul>
@@ -119,7 +119,18 @@
     padding: 2px;"></div>
 </p></center>
 
-<h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>Java Virtual Machine Stacks （Java 虚拟机栈）</p>
+<h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>是描述java方法执行的内存模型，每个方法在执行的同时都会创建一个栈帧（Stack Frame）用于存储局部变量表、操作数栈、动态链接、方法出口等信息。每一个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中入栈到出栈的过程。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/z3Z4FQ0g/17.jpg" width="100%">
+    <p>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;"></div>
+</p></center>
+
+<p>Java Virtual Machine Stacks （Java 虚拟机栈）</p>
 <ul>
 <li><strong>每个线程都有一个虚拟机栈<code>(线程私有)</code></strong><center>
   <img style="border-radius: 0.3125em;
@@ -138,9 +149,8 @@
   display: inline-block;
   color: #999;
   padding: 2px;"></div>
-</p></center>
-
-</li>
+</p></center></li>
+<li><strong>栈帧随着方法调用而创建，随着方法结束而销毁——无论方法是正常完成还是异常完成（抛出了在方法内未被捕获的异常）都算作方法结束。</strong></li>
 </ul>
 <h3 id="问题辨析"><a href="#问题辨析" class="headerlink" title="问题辨析"></a>问题辨析</h3><ol>
 <li><p>垃圾回收是否涉及栈内存？</p>
@@ -229,7 +239,8 @@
     padding: 2px;"></div>
 </p></center>
 
-<h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>Heap 堆</p>
+<h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>堆是被<code>线程共享</code>的一块内存区域，创建的对象和数组都保存在Java堆内存中，也是垃圾收集器进行垃圾收集的最重要的内存区域。</p>
+<p>Heap 堆</p>
 <ul>
 <li>通过 new 关键字，创建对象都会使用堆内存</li>
 </ul>
