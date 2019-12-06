@@ -81,7 +81,6 @@
 </li>
 </ul>
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>a</mi><mi>v</mi><mi>g</mi></mrow></msub><mo>(</mo><mi>n</mi><mo>)</mo><mo>≤</mo><msub><mi>T</mi><mrow><mi>w</mi><mi>o</mi><mi>r</mi><mi>s</mi><mi>t</mi></mrow></msub><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T_{avg}(n) \le T_{worst}(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.03588em;">v</span><span class="mord mathit" style="margin-right:0.03588em;">g</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mclose">)</span><span class="mrel">≤</span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">s</span><span class="mord mathit">t</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mclose">)</span></span></span></span></span>
-
 <h3 id="Why-focus-on-the-worst-case"><a href="#Why-focus-on-the-worst-case" class="headerlink" title="Why focus on the worst case?"></a>Why focus on the worst case?</h3><ul>
 <li>The worst case gives the upper bound on the execution time of the algorithm. We can be sure that the execution time of the algorithm will not exceed this upper bound no matter what input is given, which facilitates comparison and analysis.</li>
 </ul>
@@ -105,7 +104,8 @@
 <h4 id="Symbol-1"><a href="#Symbol-1" class="headerlink" title="Symbol "></a>Symbol <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi></mrow><annotation encoding="application/x-tex">O</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.02778em;">O</span></span></span></span></h4><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi></mrow><annotation encoding="application/x-tex">O</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.02778em;">O</span></span></span></span> read as large <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>g</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">O(g(n))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>, sometimes only read as <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>g</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">O(g(n))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span> gives a progressive upper bound on a function.
 
 
-<h4 id="Symbol-2"><a href="#Symbol-2" class="headerlink" title="Symbol "></a>Symbol <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Ω</mi></mrow><annotation encoding="application/x-tex">\Omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">Ω</span></span></span></span></h4><p>The <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Ω</mi></mrow><annotation encoding="application/x-tex">\Omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">Ω</span></span></span></span> token gives the progressive lower bound of a function.</p>
+#### Symbol <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Ω</mi></mrow><annotation encoding="application/x-tex">\Omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">Ω</span></span></span></span>
+<p>The <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Ω</mi></mrow><annotation encoding="application/x-tex">\Omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">Ω</span></span></span></span> token gives the progressive lower bound of a function.</p>
 <h4 id="Symbol-and"><a href="#Symbol-and" class="headerlink" title="Symbol  and "></a>Symbol <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>o</mi></mrow><annotation encoding="application/x-tex">o</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.43056em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">o</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.43056em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.03588em;">ω</span></span></span></span></h4><p>There are also <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>o</mi></mrow><annotation encoding="application/x-tex">o</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.43056em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">o</span></span></span></span> marks and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.43056em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.03588em;">ω</span></span></span></span> marks, which represent a non-progressively accurate upper bound and a non-progressively tight lower bound.</p>
 <h3 id="Memory-tips"><a href="#Memory-tips" class="headerlink" title="Memory tips"></a>Memory tips</h3><ul>
 <li>The meaning of <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Θ</mi></mrow><annotation encoding="application/x-tex">\Theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">Θ</span></span></span></span>  is similar to “equal to”;</li>
@@ -133,7 +133,38 @@
 </p></center>
 
 <h2 id="Deep-understanding"><a href="#Deep-understanding" class="headerlink" title="Deep understanding"></a>Deep understanding</h2><ol>
-<li><a href="http://open.163.com/movie/2010/12/2/E/M6UTT5U0I_M6V2T4T2E.html" target="_blank" rel="noopener">Introduction to MIT Algorithm: Asymptotic Symbol, Recursion and Solution</a><br><object width="640" height="360"><param name="movie" value="//open.163.com/openplayer/-M6UTT5U0I-M6V2T4T2E-http://open-image.nosdn.127.net/4a92877fb47f409f8ca2c28b00da9c5d.jpg-openPlayer.swf?isUserAutoPlay=1"><param name="allowScriptAccess" value="always"><param name="wmode" value="transparent"><embed src="//open.163.com/openplayer/-M6UTT5U0I-M6V2T4T2E-http://open-image.nosdn.127.net/4a92877fb47f409f8ca2c28b00da9c5d.jpg-openPlayer.swf?isUserAutoPlay=1" type="application/x-shockwave-flash" width="640" height="360" allowfullscreen="true" wmode="transparent" allowscriptaccess="always"></object></li>
+<li><a href="http://open.163.com/movie/2010/12/2/E/M6UTT5U0I_M6V2T4T2E.html" target="_blank" rel="noopener">Introduction to MIT Algorithm: Asymptotic Symbol, Recursion and Solution</a><object width="640" height="360"><param name="movie" value="//open.163.com/openplayer/-M6UTT5U0I-M6V2T4T2E-http://open-image.nosdn.127.net/4a92877fb47f409f8ca2c28b00da9c5d.jpg-openPlayer.swf?isUserAutoPlay=1"><param name="allowScriptAccess" value="always"><param name="wmode" value="transparent"><embed src="//open.163.com/openplayer/-M6UTT5U0I-M6V2T4T2E-http://open-image.nosdn.127.net/4a92877fb47f409f8ca2c28b00da9c5d.jpg-openPlayer.swf?isUserAutoPlay=1" type="application/x-shockwave-flash" width="640" height="360" allowfullscreen="true" wmode="transparent" allowscriptaccess="always"></object>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
 </ol>
 	  
 
@@ -146,6 +177,8 @@
 	
 	
 	
+	
+		
 	
 		
 	
