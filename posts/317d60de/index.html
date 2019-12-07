@@ -290,7 +290,7 @@
 <h4 id="新生代——复制算法"><a href="#新生代——复制算法" class="headerlink" title="新生代——复制算法"></a>新生代——复制算法</h4><p>每次垃圾收集都能发现大批对象已死, 只有少量存活. 因此选用复制算法, 只需要付出少量存活对象的复制成本就可以完成收集.</p>
 <h4 id="老年代——标记整理算法"><a href="#老年代——标记整理算法" class="headerlink" title="老年代——标记整理算法"></a>老年代——标记整理算法</h4><p>因为对象存活率高、没有额外空间对它进行分配担保, 就必须采用“标记—清理”或“标记—整理”算法来进行回收, 不必进行内存复制, 且直接腾出空闲内存.</p>
 <h3 id="分区收集算法"><a href="#分区收集算法" class="headerlink" title="分区收集算法"></a>分区收集算法</h3><p>分区算法则将整个堆空间划分为连续的不同小区间, 每个小区间独立使用, 独立回收. 这样做的好处是可以控制一次回收多少个小区间 , 根据目标停顿时间, 每次合理地回收若干个小区间(而不是整个堆), 从而减少一次GC所产生的停顿。</p>
-<h3 id="相关参数"><a href="#相关参数" class="headerlink" title="相关参数"></a>相关参数</h3><div class="table-container">
+<h3 id="分代回收相关参数"><a href="#分代回收相关参数" class="headerlink" title="分代回收相关参数"></a>分代回收相关参数</h3><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -347,7 +347,12 @@
 </tbody>
 </table>
 </div>
-<h2 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h2><p>Java堆内存被划分为新生代和年老代两部分，新生代主要使用复制和标记-清除垃圾回收算法；年老代主要使用标记-整理垃圾回收算法，因此java虚拟中针对新生代和年老代分别提供了多种不同的垃圾收集器，JDK1.6中Sun HotSpot虚拟机的垃圾收集器如下：</p>
+<h2 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h2><p>Java堆内存被划分为新生代和年老代两部分</p>
+<ul>
+<li>新生代主要使用复制和标记-清除垃圾回收算法；</li>
+<li>年老代主要使用标记-整理垃圾回收算法。</li>
+</ul>
+<p>因此java虚拟中针对新生代和年老代分别提供了多种不同的垃圾收集器，JDK1.6中Sun HotSpot虚拟机的垃圾收集器如下：</p>
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/BnXP1K39/11.jpg" width="100%">
@@ -359,36 +364,62 @@
 </p></center>
 
 <ol>
-<li>串行<ul>
+<li><p>串行</p>
+<ul>
 <li>单线程</li>
-<li>堆内存较小，适合个人电脑</li>
+<li><p>堆内存较小，适合个人电脑</p>
+<center>
+<img style="border-radius: 0.3125em;
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/fyqRvMnq/12.png" width="100%">
+<p>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+display: inline-block;
+color: #999;
+padding: 2px;">串行</div>
+</p></center>
+</li>
 </ul>
 </li>
-<li>吞吐量优先<ul>
-<li>让单位时间内，STW 的时间最短 0.2 0.2 = 0.4，垃圾回收时间占比最低，这样就称吞吐量高</li>
+<li><p>吞吐量优先</p>
+<ul>
+<li><p>让单位时间内，STW 的时间最短 0.2 0.2 = 0.4，垃圾回收时间占比最低，这样就称吞吐量高</p>
+<center>
+<img style="border-radius: 0.3125em;
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/6Qhw0BCV/13.png" width="100%">
+<p>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+display: inline-block;
+color: #999;
+padding: 2px;">吞吐量优先</div>
+</p></center>
+</li>
 </ul>
 </li>
-<li>响应时间优先<ul>
+<li><p>响应时间优先</p>
+<ul>
 <li>多线程</li>
 <li>堆内存较大，多核 cpu</li>
-<li>尽可能让单次 STW 的时间最短 0.1 0.1 0.1 0.1 0.1 = 0.5</li>
+<li><p>尽可能让单次 STW 的时间最短 0.1 0.1 0.1 0.1 0.1 = 0.5</p>
+<center>
+<img style="border-radius: 0.3125em;
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/wvx52tqQ/18.png" width="100%">
+<p>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+display: inline-block;
+color: #999;
+padding: 2px;">响应时间优先</div>
+</p></center>
+
+</li>
 </ul>
 </li>
 </ol>
-<h3 id="Serial垃圾收集器（串行、单线程、复制算法）"><a href="#Serial垃圾收集器（串行、单线程、复制算法）" class="headerlink" title="Serial垃圾收集器（串行、单线程、复制算法）"></a>Serial垃圾收集器（串行、单线程、复制算法）</h3><p>-XX:+UseSerialGC = Serial + SerialOld</p>
-<p>Serial（英文连续）是最基本垃圾收集器，使用复制算法，曾经是JDK1.3.1之前新生代唯一的垃圾收集器。Serial是一个单线程的收集器，它不但只会使用一个CPU或一条线程去完成垃圾收集工作，并且在进行垃圾收集的同时，必须暂停其他所有的工作线程，直到垃圾收集结束。</p>
+<h3 id="Serial垃圾收集器"><a href="#Serial垃圾收集器" class="headerlink" title="Serial垃圾收集器"></a>Serial垃圾收集器</h3><p><code>串行</code>、<code>单线程</code>、<code>复制算法</code></p>
+<p>-XX:+UseSerialGC = Serial + SerialOld</p>
+<p>Serial（英文连续）是最基本垃圾收集器，使用<strong>复制算法</strong>，曾经是JDK1.3.1之前<code>新生代</code>唯一的垃圾收集器。Serial是一个单线程的收集器，它不但只会使用一个CPU或一条线程去完成垃圾收集工作，并且在进行垃圾收集的同时，必须暂停其他所有的工作线程，直到垃圾收集结束。</p>
 <p>Serial垃圾收集器虽然在收集垃圾过程中需要暂停所有其他的工作线程，但是它简单高效，对于限定单个CPU环境来说，没有线程交互的开销，可以获得最高的单线程垃圾收集效率，因此Serial垃圾收集器依然是java虚拟机运行在Client模式下默认的新生代垃圾收集器。</p>
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/fyqRvMnq/12.png" width="100%">
-    <p>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 2px;"></div>
-</p></center>
-
-<h3 id="Serial-Old收集器（串行、单线程标记整理算法-）"><a href="#Serial-Old收集器（串行、单线程标记整理算法-）" class="headerlink" title="Serial Old收集器（串行、单线程标记整理算法 ）"></a>Serial Old收集器（串行、单线程标记整理算法 ）</h3><p>Serial Old是Serial垃圾收集器年老代版本，它同样是个单线程的收集器，使用标记-整理算法，这个收集器也主要是运行在Client默认的java虚拟机默认的年老代垃圾收集器。 在Server模式下，主要有两个用途：</p>
+<h3 id="Serial-Old收集器"><a href="#Serial-Old收集器" class="headerlink" title="Serial Old收集器"></a>Serial Old收集器</h3><p><code>串行</code>、<code>单线程</code>、<code>标记整理算法</code></p>
+<p>Serial Old是Serial垃圾收集器<code>年老代</code>版本，它同样是个单线程的收集器，使用<strong>标记-整理算法</strong>，这个收集器也主要是运行在Client默认的java虚拟机默认的年老代垃圾收集器。 在Server模式下，主要有两个用途：</p>
 <ol>
 <li>在JDK1.5之前版本中与新生代的Parallel Scavenge收集器搭配使用。 </li>
 <li>作为年老代中使用CMS收集器的后备垃圾收集方案。 </li>
@@ -416,20 +447,13 @@
 </p></center>
 
 
-<h3 id="ParNew垃圾收集器（吞吐量优先、Serial-多线程）"><a href="#ParNew垃圾收集器（吞吐量优先、Serial-多线程）" class="headerlink" title="ParNew垃圾收集器（吞吐量优先、Serial+多线程）"></a>ParNew垃圾收集器（吞吐量优先、Serial+多线程）</h3><p>ParNew垃圾收集器其实是Serial收集器的多线程版本，也使用复制算法，除了使用多线程进行垃圾收集之外，其余的行为和Serial收集器完全一样，ParNew垃圾收集器在垃圾收集过程中同样也要暂停所有其他的工作线程。</p>
-<p>ParNew收集器默认开启和CPU数目相同的线程数，可以通过-XX:ParallelGCThreads参数来限制垃圾收集器的线程数。【Parallel：平行的】 ParNew虽然是除了多线程外和Serial收集器几乎完全一样，但是ParNew垃圾收集器是很多java虚拟机运行在Server模式下新生代的默认垃圾收集器。</p>
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/6Qhw0BCV/13.png" width="100%">
-    <p>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 2px;"></div>
-</p></center>
-
-<h3 id="Parallel-Scavenge收集器（吞吐量优先、多线程复制算法、高效）"><a href="#Parallel-Scavenge收集器（吞吐量优先、多线程复制算法、高效）" class="headerlink" title="Parallel Scavenge收集器（吞吐量优先、多线程复制算法、高效）"></a>Parallel Scavenge收集器（吞吐量优先、多线程复制算法、高效）</h3><p>Parallel Scavenge收集器也是一个新生代垃圾收集器，同样使用复制算法，也是一个多线程的垃圾收集器，它重点关注的是程序达到一个可控制的吞吐量（Thoughput，CPU用于运行用户代码的时间/CPU总消耗时间，即吞吐量=运行用户代码时间/(运行用户代码时间+垃圾收集时间)），高吞吐量可以最高效率地利用CPU时间，尽快地完成程序的运算任务，主要适用于在后台运算而不需要太多交互的任务。自适应调节策略也是ParallelScavenge收集器与ParNew收集器的一个重要区别。</p>
-<h3 id="Parallel-Old收集器（吞吐量优先、多线程标记整理算法）"><a href="#Parallel-Old收集器（吞吐量优先、多线程标记整理算法）" class="headerlink" title="Parallel Old收集器（吞吐量优先、多线程标记整理算法）"></a>Parallel Old收集器（吞吐量优先、多线程标记整理算法）</h3><p>Parallel Old收集器是Parallel Scavenge的年老代版本，使用多线程的标记-整理算法，在JDK1.6才开始提供。</p>
+<h3 id="ParNew垃圾收集器"><a href="#ParNew垃圾收集器" class="headerlink" title="ParNew垃圾收集器"></a>ParNew垃圾收集器</h3><p><code>吞吐量优先</code>、<code>复制算法</code>、<code>Serial+多线程</code></p>
+<p>ParNew垃圾收集器其实是Serial收集器的多线程版本，也使用复制算法，除了使用多线程进行垃圾收集之外，其余的行为和Serial收集器完全一样，ParNew垃圾收集器在垃圾收集过程中同样也要暂停所有其他的工作线程。</p>
+<p>ParNew收集器默认开启和CPU数目相同的线程数，可以通过-XX:ParallelGCThreads参数来限制垃圾收集器的线程数。<code>Parallel：平行的</code> ParNew虽然是除了多线程外和Serial收集器几乎完全一样，但是ParNew垃圾收集器是很多java虚拟机运行在Server模式下<code>新生代</code>的默认垃圾收集器。</p>
+<h3 id="Parallel-Scavenge收集器"><a href="#Parallel-Scavenge收集器" class="headerlink" title="Parallel Scavenge收集器"></a>Parallel Scavenge收集器</h3><p><code>吞吐量优先</code>、<code>多线程</code>、<code>复制算法</code>、<code>高效</code></p>
+<p>Parallel Scavenge收集器也是一个<code>新生代</code>垃圾收集器，同样使用复制算法，也是一个多线程的垃圾收集器，它重点关注的是程序达到一个可控制的吞吐量（Thoughput，CPU用于运行用户代码的时间/CPU总消耗时间，即<strong>吞吐量=运行用户代码时间/(运行用户代码时间+垃圾收集时间)</strong>），高吞吐量可以最高效率地利用CPU时间，尽快地完成程序的运算任务，主要适用于在后台运算而不需要太多交互的任务。自适应调节策略也是ParallelScavenge收集器与ParNew收集器的一个重要区别。</p>
+<h3 id="Parallel-Old收集器"><a href="#Parallel-Old收集器" class="headerlink" title="Parallel Old收集器"></a>Parallel Old收集器</h3><p><code>吞吐量优先</code>、<code>多线程</code>、<code>标记整理算法</code></p>
+<p>Parallel Old收集器是Parallel Scavenge的<code>年老代</code>版本，使用多线程的标记-整理算法，在JDK1.6才开始提供。</p>
 <p>在JDK1.6之前，新生代使用ParallelScavenge收集器只能搭配年老代的Serial Old收集器，只能保证新生代的吞吐量优先，无法保证整体的吞吐量，Parallel Old正是为了在年老代同样提供吞吐量优先的垃圾收集器，如果系统对吞吐量要求比较高，可以优先考虑新生代Parallel Scavenge和年老代Parallel Old收集器的搭配策略。 </p>
 <p>新生代Parallel Scavenge和年老代Parallel Old收集器搭配运行过程图：</p>
 <center>
@@ -442,11 +466,19 @@
     padding: 2px;"></div>
 </p></center>
 
-<h3 id="CMS收集器（响应时间优先、多线程标记清除算法）"><a href="#CMS收集器（响应时间优先、多线程标记清除算法）" class="headerlink" title="CMS收集器（响应时间优先、多线程标记清除算法）"></a>CMS收集器（响应时间优先、多线程标记清除算法）</h3><p>Concurrent mark sweep(CMS)收集器是一种年老代垃圾收集器，其最主要目标是获取最短垃圾回收停顿时间，和其他年老代使用标记-整理算法不同，它使用多线程的标记-清除算法。 最短的垃圾收集停顿时间可以为交互比较高的程序提高用户体验。 CMS工作机制相比其他的垃圾收集器来说更复杂，整个过程分为以下4个阶段：</p>
-<h4 id="初始标记"><a href="#初始标记" class="headerlink" title="初始标记"></a>初始标记</h4><p>只是标记一下GC Roots能直接关联的对象，速度很快，仍然需要暂停所有的工作线程。</p>
-<h4 id="并发标记"><a href="#并发标记" class="headerlink" title="并发标记"></a>并发标记</h4><p>进行GC Roots跟踪的过程，和用户线程一起工作，不需要暂停工作线程。</p>
-<h4 id="重新标记"><a href="#重新标记" class="headerlink" title="重新标记"></a>重新标记</h4><p>为了修正在并发标记期间，因用户程序继续运行而导致标记产生变动的那一部分对象的标记记录，仍然需要暂停所有的工作线程。</p>
-<h4 id="并发清除"><a href="#并发清除" class="headerlink" title="并发清除"></a>并发清除</h4><p>清除GC Roots不可达对象，和用户线程一起工作，不需要暂停工作线程。由于耗时最长的并发标记和并发清除过程中，垃圾收集线程可以和用户现在一起并发工作，所以总体上来看CMS收集器的内存回收和用户线程是一起并发地执行。</p>
+<p><strong>不难发现，以上几种垃圾收集器中：</strong></p>
+<ul>
+<li><strong>新生代采用的都是复制算法</strong></li>
+<li><strong>老年代采用的都是标记整理算法</strong></li>
+</ul>
+<h3 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h3><p><code>响应时间优先</code>、<code>多线程</code>、<code>标记清除算法</code></p>
+<p>Concurrent mark sweep(CMS)收集器是一种<code>年老代</code>垃圾收集器，其最主要目标是获取最短垃圾回收停顿时间，<strong>和其他年老代使用标记-整理算法不同，它使用多线程的标记-清除算法。</strong> 最短的垃圾收集停顿时间可以为交互比较高的程序提高用户体验。 CMS工作机制相比其他的垃圾收集器来说更复杂，整个过程分为以下4个阶段：</p>
+<h4 id="初始标记-速度快"><a href="#初始标记-速度快" class="headerlink" title="初始标记 速度快"></a>初始标记 <code>速度快</code></h4><p>只是标记一下GC Roots能直接关联的对象，速度很快，<strong>仍然需要暂停所有的工作线程。</strong></p>
+<h4 id="并发标记-速度慢"><a href="#并发标记-速度慢" class="headerlink" title="并发标记 速度慢"></a>并发标记 <code>速度慢</code></h4><p>进行GC Roots跟踪的过程，和用户线程一起工作，<strong>不需要暂停工作线程。</strong></p>
+<h4 id="重新标记-速度快"><a href="#重新标记-速度快" class="headerlink" title="重新标记 速度快"></a>重新标记 <code>速度快</code></h4><p>为了修正在并发标记期间，因用户程序继续运行而导致标记产生变动的那一部分对象的标记记录，<strong>仍然需要暂停所有的工作线程。</strong></p>
+<h4 id="并发清除-速度慢"><a href="#并发清除-速度慢" class="headerlink" title="并发清除 速度慢"></a>并发清除 <code>速度慢</code></h4><p>清除GC Roots不可达对象，和用户线程一起工作，<strong>不需要暂停工作线程。</strong></p>
+<p><strong>由于耗时最长的并发标记和并发清除过程中，垃圾收集线程可以和用户现在一起并发工作，所以总体上来看CMS收集器的内存回收和用户线程是一起并发地执行。</strong></p>
+<p><strong>CMS垃圾回收器存在的最大的问题是：由于采用的是标记清除算法，在回收的过程中可能会产生内存碎片，并且是并发收集，其他线程在执行的过程中会产生浮动垃圾，可能导致并发失败，此时会退化为Seriaold垃圾回收器，采用单线程串行的垃圾回收，如果发生并发失败，则垃圾回收的时间会飙升，不符合响应时间优先的初衷</strong></p>
 <p>CMS收集器工作过程：</p>
 <center>
     <img style="border-radius: 0.3125em;
@@ -458,45 +490,326 @@
     padding: 2px;"></div>
 </p></center>
 
+<h3 id="G1垃圾回收器"><a href="#G1垃圾回收器" class="headerlink" title="G1垃圾回收器"></a>G1垃圾回收器</h3><p>Garbage first垃圾收集器是目前垃圾收集器理论发展的最前沿成果，相比与CMS收集器，G1收集器两个最突出的改进是：</p>
+<ol>
+<li>基于标记-整理算法，不产生内存碎片。 </li>
+<li>可以非常精确控制停顿时间，在不牺牲吞吐量前提下，实现低停顿垃圾回收。 </li>
+</ol>
+<p>G1收集器避免全区域垃圾收集，它把堆内存划分为大小固定的几个独立区域，并且跟踪这些区域的垃圾收集进度，同时在后台维护一个优先级列表，每次根据所允许的收集时间，优先回收垃圾最多的区域。<strong>区域划分和优先级区域回收机制，确保G1收集器可以在有限时间获得最高的垃圾收集效率。</strong></p>
+<p>定义：Garbage First</p>
+<ul>
+<li>2004 论文发布</li>
+<li>2009 JDK 6u14 体验</li>
+<li>2012 JDK 7u4 官方支持</li>
+<li>2017 JDK 9 默认</li>
+</ul>
+<p>适用场景</p>
+<ul>
+<li>同时注重吞吐量（Throughput）和低延迟（Low latency），默认的暂停目标是 200 ms</li>
+<li>超大堆内存，会将堆划分为多个大小相等的 Region</li>
+<li>整体上是标记+整理算法，两个区域之间是复制算法</li>
+</ul>
+<p>随着堆内存的增大，G1回收器较CMS的优势逐渐明显。</p>
+<p>相关 JVM 参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseG1GC</span><br><span class="line">-XX:G1HeapRegionSize=size</span><br><span class="line">-XX:MaxGCPauseMillis=time</span><br></pre></td></tr></table></figure>
+<h4 id="G1垃圾回收阶段"><a href="#G1垃圾回收阶段" class="headerlink" title="G1垃圾回收阶段"></a>G1垃圾回收阶段</h4><center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/Fs8Hx1g5/19.png" width="60%">
+    <p>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">循环执行</div>
+</p></center>
 
+<h4 id="Young-Collection"><a href="#Young-Collection" class="headerlink" title="Young Collection"></a>Young Collection</h4><ul>
+<li>会STW</li>
+</ul>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/R0M51z8x/20.png" width="60%">
+    <p>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">初始状态，创建对象放在新生代</div>
+</p></center>
 
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/YSbcbsKG/21.png" width="60%">
+    <p>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">发生垃圾回收时，幸存者放入S区</div>
+</p></center>
 
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/C113tsSv/23.png" width="60%">
+    <p>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">发生垃圾回收时，满足年龄者放入老年代</div>
+</p></center>
 
+<h4 id="Young-Collection-CM"><a href="#Young-Collection-CM" class="headerlink" title="Young Collection + CM"></a>Young Collection + CM</h4><p>新生代的垃圾回收和并发标记阶段</p>
+<ul>
+<li>在 Young GC 时会进行 GC Root 的初始标记</li>
+<li>当老年代占用堆空间比例达到阈值时，进行并发标记（不会 STW），由下面的 JVM 参数决定</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:InitiatingHeapOccupancyPercent=percent(默认<span class="number">45</span>%)</span><br></pre></td></tr></table></figure>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/wBfq7vBG/24.png" width="60%">
+    <p>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">当老年代占堆内存空间的45%时，触发并发标记</div>
+</p></center>
 
+<h4 id="混合收集"><a href="#混合收集" class="headerlink" title="混合收集"></a>混合收集</h4><ul>
+<li>会对 E、S、O 进行全面垃圾回收</li>
+<li>最终标记（Remark）会 STW</li>
+<li>拷贝存活（Evacuation）会 STW</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:MaxGCPauseMillis=ms</span><br></pre></td></tr></table></figure>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/02R86h8P/25.png" width="60%">
+    <p>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">挑选回收区域最高的进行回收来达到最大暂停时间</div>
+</p></center>
 
+<p><strong>Garbage first的含义也是优先收集那些回收价值区域比较大的区块。</strong></p>
+<h4 id="Young-Collection-跨代引用"><a href="#Young-Collection-跨代引用" class="headerlink" title="Young Collection 跨代引用"></a>Young Collection 跨代引用</h4><p>新生代回收的跨代引用（老年代引用新生代）问题</p>
+<ul>
+<li>卡表与 Remembered Set</li>
+<li>在引用变更时通过 post-write barrier + dirty card queue</li>
+<li>concurrent refinement threads 更新 Remembered Set</li>
+</ul>
+<p>新生代在进行回收时，首先要找到跟对象，然后再进行可达性分析，找到存活对象再进行复制到幸存区等操作。</p>
+<p>而跟对象有一部分是来自老年代的，老年代存活的对象是非常多的，因此遍历的效率很低，于是我们采用的是一种卡表的技术，把老年代的区域再进行细分，每一个card占512K，如果老年代其中有一个对象引用了新生代的对象，那我们把该card标记为脏卡。</p>
+<p>这样做的好处是我们不用对整个老年代遍历，而只用关心脏卡区域就可以了，这样可以减少搜索范围，提高效率。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/ncgqQFXM/27.png" width="80%">
+    <p>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;"></div>
+</p></center>
 
+<h4 id="JDK-8u20-字符串去重"><a href="#JDK-8u20-字符串去重" class="headerlink" title="JDK 8u20 字符串去重"></a>JDK 8u20 字符串去重</h4><ul>
+<li>优点：节省大量内存</li>
+<li>缺点：略微多占用了 cpu 时间，新生代回收时间略微增加<br>-XX:+UseStringDeduplication</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="keyword">new</span> String(<span class="string">"hello"</span>); <span class="comment">// char[]&#123;'h','e','l','l','o'&#125;</span></span><br><span class="line">String s2 = <span class="keyword">new</span> String(<span class="string">"hello"</span>); <span class="comment">// char[]&#123;'h','e','l','l','o'&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>将所有新分配的字符串放入一个队列</li>
+<li>当新生代回收时，G1并发检查是否有字符串重复</li>
+<li>如果它们值一样，让它们引用同一个 char[]</li>
+<li>注意，与 String.intern() 不一样<ul>
+<li>String.intern() 关注的是字符串对象</li>
+<li>而字符串去重关注的是 char[]</li>
+<li>在 JVM 内部，使用了不同的字符串表</li>
+</ul>
+</li>
+</ul>
+<h4 id="JDK-8u40-并发标记类卸载"><a href="#JDK-8u40-并发标记类卸载" class="headerlink" title="JDK 8u40 并发标记类卸载"></a>JDK 8u40 并发标记类卸载</h4><p>所有对象都经过并发标记后，就能知道哪些类不再被使用，当一个类加载器的所有类都不再使用，则卸载它所加载的所有类 -XX:+ClassUnloadingWithConcurrentMark 默认启用</p>
+<h4 id="JDK-8u60-回收巨型对象"><a href="#JDK-8u60-回收巨型对象" class="headerlink" title="JDK 8u60 回收巨型对象"></a>JDK 8u60 回收巨型对象</h4><center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/wTrkJQSg/33.png" width="100%">
+    <p>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;"></div>
+</p></center>
 
+<ul>
+<li>一个对象大于 region 的一半时，称之为巨型对象</li>
+<li>G1 不会对巨型对象进行拷贝</li>
+<li>回收时被优先考虑</li>
+<li>G1 会跟踪老年代所有 incoming 引用，这样老年代 incoming 引用为0 的巨型对象就可以在新生<br>代垃圾回收时处理掉</li>
+</ul>
+<h4 id="JDK-9-并发标记起始时间的调整"><a href="#JDK-9-并发标记起始时间的调整" class="headerlink" title="JDK 9 并发标记起始时间的调整"></a>JDK 9 并发标记起始时间的调整</h4><p>并发标记必须在堆空间占满前完成，否则退化为 FullGC</p>
+<ul>
+<li>JDK 9 之前需要使用 -XX:InitiatingHeapOccupancyPercent</li>
+<li>JDK 9 可以动态调整<ul>
+<li>XX:InitiatingHeapOccupancyPercent 用来设置初始值</li>
+<li>进行数据采样并动态调整</li>
+<li>总会添加一个安全的空档空间</li>
+</ul>
+</li>
+</ul>
+<p>可以让并发标记，混合收集提前开始来防止发生并发垃圾回收退化为Full GC的垃圾回收</p>
+<h4 id="JDK-9-更高效的回收"><a href="#JDK-9-更高效的回收" class="headerlink" title="JDK 9 更高效的回收"></a>JDK 9 更高效的回收</h4><ul>
+<li>250+增强</li>
+<li>180+bug修复</li>
+<li><a href="https://docs.oracle.com/en/java/javase/12/gctuning" target="_blank" rel="noopener">HotSpot Virtual Machine Garbage Collection Tuning Guide</a></li>
+<li>G1越来越好了！</li>
+</ul>
+<h3 id="Remark-辨析"><a href="#Remark-辨析" class="headerlink" title="Remark 辨析"></a>Remark 辨析</h3><ul>
+<li>重标记</li>
+<li>pre-write barrier + satb_mark_queue</li>
+<li>remark阶段配合satb_mark_queue队列来进行判断。</li>
+</ul>
+<p>下图中：</p>
+<ul>
+<li>黑色代表已处理完的对象</li>
+<li>褐色代表正在处理的对象</li>
+<li>箭头代表有强引用的对象</li>
+<li>白色代表可回收的垃圾</li>
+</ul>
+<p><a href="https://www.bilibili.com/video/av70549061?p=78" target="_blank" rel="noopener">重标记辨析,写屏障技术视频详解</a></p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/RCc0TvpN/30.png" width="30%">
+    <p>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;"></div>
+</p></center>
 
+<p>由于是并发标记，所以在发现一个对象没有被强引用后，该对象被标记为可回收，但是标记的过程是和线程并发的，所以在这过程中可能有别的线程改变了该对象的引用。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/PJk5k7JX/31.png" width="30%">
+    <p>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;"></div>
+</p></center>
 
+<p>如果再回收此对象，则会发生重大的错误，于是在并发标记后会使用重新标记来解决此类问题。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/DzHzx0Kb/28.png" width="50%">
+    <p>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/bNpwC44L/29.png" width="50%">
+    </p><p>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;"></div>
+</p></center>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p>在对象的引用发生改变时，JVM会给它加入一个写屏障，写屏障的指令将C加入一个队列当中，并将其变为灰色，表示还没处理完，当并发标记结束后，重新标记的线程就会从队列中把对象取出来再进行进一步的处理。</p>
+<p>结果发现C有强引用，则将其变为黑色，则不会将C对象当成垃圾回收掉。</p>
+<h3 id="Full-GC-辨析"><a href="#Full-GC-辨析" class="headerlink" title="Full GC 辨析"></a>Full GC 辨析</h3><h4 id="SerialGC"><a href="#SerialGC" class="headerlink" title="SerialGC"></a>SerialGC</h4><ul>
+<li>新生代内存不足发生的垃圾收集 - minor gc</li>
+<li>老年代内存不足发生的垃圾收集 - full gc</li>
+</ul>
+<h4 id="ParallelGC"><a href="#ParallelGC" class="headerlink" title="ParallelGC"></a>ParallelGC</h4><ul>
+<li>新生代内存不足发生的垃圾收集 - minor gc</li>
+<li>老年代内存不足发生的垃圾收集 - full gc</li>
+</ul>
+<h4 id="CMS"><a href="#CMS" class="headerlink" title="CMS"></a>CMS</h4><ul>
+<li>新生代内存不足发生的垃圾收集 - minor gc</li>
+<li>老年代内存不足</li>
+</ul>
+<h4 id="G1"><a href="#G1" class="headerlink" title="G1"></a>G1</h4><ul>
+<li>新生代内存不足发生的垃圾收集 - minor gc</li>
+<li>老年代内存不足</li>
+</ul>
+<p>CMS和G1由于是并发标记和收集的阶段，如果回收的速度大于垃圾产生的速度，这时候还谈不上发生Full GC. 只有当垃圾的产生速度大于回速度的时候，会退化为串行的垃圾收集器，触发Full GC，导致STW，使得响应时间变长。</p>
+<p>可以通过打印GC日志观察是否又FUll GC字样来判断是否发生了Full GC.</p>
+<h3 id="垃圾回收器相关参数"><a href="#垃圾回收器相关参数" class="headerlink" title="垃圾回收器相关参数"></a>垃圾回收器相关参数</h3><h4 id="串行"><a href="#串行" class="headerlink" title="串行"></a>串行</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseSerialGC = Serial + SerialOld</span><br></pre></td></tr></table></figure>
+<h4 id="吞吐量优先"><a href="#吞吐量优先" class="headerlink" title="吞吐量优先"></a>吞吐量优先</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseParallelGC ~ -XX:+UseParallelOldGC</span><br><span class="line">-XX:GCTimeRatio=ratio</span><br><span class="line">-XX:MaxGCPauseMillis=ms</span><br><span class="line">-XX:ParallelGCThreads=n</span><br></pre></td></tr></table></figure>
+<h4 id="响应时间优先"><a href="#响应时间优先" class="headerlink" title="响应时间优先"></a>响应时间优先</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseConcMarkSweepGC ~ -XX:+UseParNewGC ~ SerialOld</span><br><span class="line">-XX:ParallelGCThreads=n ~ -XX:ConcGCThreads=threads</span><br><span class="line">-XX:CMSInitiatingOccupancyFraction=percent</span><br><span class="line">-XX:+CMSScavengeBeforeRemark</span><br></pre></td></tr></table></figure>
+<h2 id="GC-调优"><a href="#GC-调优" class="headerlink" title="GC 调优"></a>GC 调优</h2><ul>
+<li>掌握 GC 相关的 VM 参数，会基本的空间调整</li>
+<li>掌握相关工具</li>
+<li>明白一点：调优跟应用、环境有关，没有放之四海而皆准的法则</li>
+</ul>
+<h3 id="调优领域"><a href="#调优领域" class="headerlink" title="调优领域"></a>调优领域</h3><ul>
+<li>内存(GC)</li>
+<li>锁竞争</li>
+<li>cpu 占用</li>
+<li>io</li>
+</ul>
+<h3 id="调优目标"><a href="#调优目标" class="headerlink" title="调优目标"></a>调优目标</h3><ul>
+<li>【低延迟】还是【高吞吐量】？【网站开发】还是【科学研究】？选择合适的回收器</li>
+<li>CMS，G1，ZGC</li>
+<li>ParallelGC</li>
+<li>Zing 零挺对，几乎没有STW时间</li>
+</ul>
+<h3 id="最快的-GC-是不发生-GC"><a href="#最快的-GC-是不发生-GC" class="headerlink" title="最快的 GC 是不发生 GC"></a>最快的 GC 是不发生 GC</h3><ul>
+<li>查看 FullGC 前后的内存占用，考虑下面几个问题<ul>
+<li>数据是不是太多？<ul>
+<li>resultSet = statement.executeQuery(“select * from 大表 limit n”)</li>
+</ul>
+</li>
+<li>数据表示是否太臃肿？<ul>
+<li>对象图</li>
+<li>对象大小 16 Integer 24 int 4</li>
+</ul>
+</li>
+<li>是否存在内存泄漏？<ul>
+<li>static Map map =</li>
+<li>软</li>
+<li>弱</li>
+<li>第三方缓存实现</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="新生代调优"><a href="#新生代调优" class="headerlink" title="新生代调优"></a>新生代调优</h3><ul>
+<li>新生代的特点<ul>
+<li>所有的 new 操作的内存分配非常廉价<ul>
+<li>TLAB thread-local allocation buffer</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>死亡对象的回收代价是零</li>
+<li>大部分对象用过即死</li>
+<li>Minor GC 的时间远远低于 Full GC</li>
+<li>新生代越大越好吗？<ul>
+<li>-Xmn Sets the initial and maximum size (in bytes) of the heap for the young generation (nursery). GC is performed in this region more often than in other regions. If the size for the young generation is too small, then a lot of minor garbage collections are performed. If the size is too large, then only full garbage collections are performed, which can take a long time to complete. Oracle recommends that you keep the size for the young generation greater than 25% and less than 50% of the overall heap size.</li>
+</ul>
+</li>
+<li>新生代能容纳所有【并发量 * (请求-响应)】的数据</li>
+<li>幸存区大到能保留【当前活跃对象+需要晋升对象】</li>
+<li>晋升阈值配置得当，让长时间存活对象尽快晋升</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-XX:MaxTenuringThreshold=threshold</span><br><span class="line">-XX:+PrintTenuringDistribution</span><br><span class="line"></span><br><span class="line">Desired survivor size <span class="number">48286924</span> bytes, <span class="keyword">new</span> threshold <span class="number">10</span> (max <span class="number">10</span>)</span><br><span class="line">- age <span class="number">1</span>: <span class="number">28992024</span> bytes, <span class="number">28992024</span> total</span><br><span class="line">- age <span class="number">2</span>: <span class="number">1366864</span> bytes, <span class="number">30358888</span> total</span><br><span class="line">- age <span class="number">3</span>: <span class="number">1425912</span> bytes, <span class="number">31784800</span> total</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="老年代调优"><a href="#老年代调优" class="headerlink" title="老年代调优"></a>老年代调优</h3><p>以 CMS 为例</p>
+<ul>
+<li>CMS 的老年代内存越大越好</li>
+<li>先尝试不做调优，如果没有 Full GC 那么已经…，否则先尝试调优新生代</li>
+<li>观察发生 Full GC 时老年代内存占用，将老年代内存预设调大 1/4 ~ 1/3<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:CMSInitiatingOccupancyFraction=percent<span class="comment">//发生老年代垃圾回收的阈值</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><ul>
+<li>案例1 Full GC 和 Minor GC频繁<ul>
+<li>可能是由于新生代的内存太小，导致在新对象创建时，Survivor区空间不够而需要下调晋升代数，导致很多对象提前放入老年代中从而恶性循环，因此可以尝试调大新生代的空间。</li>
+</ul>
+</li>
+<li><p>案例2 请求高峰期发生 Full GC，单次暂停时间特别长 （CMS）</p>
+<ul>
+<li>查看GC日志，看看是在哪个阶段耗时长，由于初始标记和并发标记比较快，重新标记时间比较长，重新标记需要扫描整个新生代，老年代，因此可以在重新标记之前，对新生代发生一次垃圾回收。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:+CMSScavengeBeforeRemark</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>案例3 老年代充裕情况下，发生 Full GC （CMS jdk1.7）</p>
+<ul>
+<li>1.7是由于永久代的空间不足发生Full GC 在1.8以后可能可能是由于元空间的不足引发的Full GC.</li>
+</ul>
+</li>
+</ul>
 	  
 
 	  <div>
