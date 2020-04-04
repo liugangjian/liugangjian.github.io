@@ -77,7 +77,7 @@
 	  <!-- content -->
 	  <h1 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h1><center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/Y0jSFNw5/0.jpg" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/0.jpg" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -89,7 +89,7 @@
 <p>但是可能存在循环引用的问题，两个对象之间相互引用，再没有其他对象引用他们，但这两个对象都会因计数不为零而无法进行回收，造成内存泄漏。</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/rmTKpWbC/1.png" width="50%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/1.png" width="50%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -101,7 +101,7 @@
 <p>要注意的是，<strong>不可达对象不等价于可回收对象，不可达对象变为可回收对象至少要经过两次标记过程。两次标记后仍然是可回收对象，则将面临回收。</strong></p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/pXSrF34d/2.png" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/2.png" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -111,7 +111,7 @@
 
 <h2 id="Java中五种引用"><a href="#Java中五种引用" class="headerlink" title="Java中五种引用"></a>Java中五种引用</h2><center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/4dFyQMyw/3.png" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/3.png" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -141,7 +141,7 @@
 </ul>
 <h3 id="虚引用"><a href="#虚引用" class="headerlink" title="虚引用"></a>虚引用</h3><center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/0jsW4nVS/4.png" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/4.png" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -157,7 +157,7 @@
 </ul>
 <h3 id="终结器"><a href="#终结器" class="headerlink" title="终结器"></a>终结器</h3><center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/bvSmNWMb/5.png" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/5.png" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -175,7 +175,7 @@
 <h2 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h2><h3 id="标记清除算法-Mark-Sweep"><a href="#标记清除算法-Mark-Sweep" class="headerlink" title="标记清除算法(Mark Sweep)"></a>标记清除算法(Mark Sweep)</h3><p>最基础的垃圾回收算法，分为两个阶段，标注和清除。标记阶段标记出所有需要回收的对象，清除阶段回收被标记的对象所占用的空间。如图所示。</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/c44y41cn/6.png" width="60%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/6.png" width="60%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -187,7 +187,7 @@
 <h3 id="标记整理算法-Mark-Compact"><a href="#标记整理算法-Mark-Compact" class="headerlink" title="标记整理算法(Mark Compact)"></a>标记整理算法(Mark Compact)</h3><p>标记阶段和标记清除算法Mark-Sweep算法相同，标记后不是清理对象，而是将存活对象移向内存的一端，然后清除端边界外的对象。<strong>优点是内存碎片化的问题得以解决，缺点是由于在清理的过程中存在对象的移动，需要改变这些对象的引用地址，使得效率较低，速度慢。</strong>如图：</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/mg3TtpHc/7.png" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/7.png" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -198,7 +198,7 @@
 <h3 id="复制算法-copying"><a href="#复制算法-copying" class="headerlink" title="复制算法(copying)"></a>复制算法(copying)</h3><p>为了解决Mark-Sweep算法内存碎片化的缺陷而被提出的算法。按内存容量将内存划分为<strong>等大小</strong>的两块。每次只使用其中一块，当这一块内存满后将尚存活的对象复制到另一块上去，把已使用的内存清掉，如图：</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/9Qyyz2bG/8.png" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/8.png" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -214,7 +214,7 @@
 <h2 id="JVM-运行时内存"><a href="#JVM-运行时内存" class="headerlink" title="JVM 运行时内存"></a>JVM 运行时内存</h2><p>Java堆从GC的角度还可以细分为: <strong>新生代</strong>(<code>Eden区</code>、<code>From Survivor区</code>和<code>To Survivor区</code>)和<strong>老年代</strong>。</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/HLZ0123K/9.jpg" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/9.jpg" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -243,9 +243,9 @@
 <h3 id="永久代"><a href="#永久代" class="headerlink" title="永久代"></a>永久代</h3><p>指内存的永久保存区域，主要存放Class和Meta（元数据）的信息,Class在被加载的时候被放入永久区域，它和存放实例的区域不同,GC不会在主程序运行期对永久区域进行清理。所以这也导致了永久代的区域会随着加载的Class的增多而胀满，最终抛出OOM异常。</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/Ls03j1sd/10.png" width="70%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/20200404191013.png" width="70%">
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/7LLNCVwM/11.png" width="70%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/20200404191052.png" width="70%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -261,7 +261,7 @@
 <p>一般将新生代划分为<strong>一块较大</strong>的Eden空间和<strong>两个较小</strong>的Survivor空间(From Space, To Space)，每次使用Eden空间和其中的一块Survivor空间，当进行回收时，将该两块空间中还存活的对象复制到另一块Survivor空间中。</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/bNrsKh4z/10.jpg" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/10.jpg" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -342,7 +342,7 @@
 <p>因此java虚拟中针对新生代和年老代分别提供了多种不同的垃圾收集器，JDK1.6中Sun HotSpot虚拟机的垃圾收集器如下：</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/BnXP1K39/11.jpg" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/11.jpg" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -358,7 +358,7 @@
 <li><p>堆内存较小，适合个人电脑</p>
 <center>
 <img style="border-radius: 0.3125em;
-box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/fyqRvMnq/12.png" width="100%">
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/12.png" width="100%">
 <p>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9;
 display: inline-block;
@@ -373,7 +373,7 @@ padding: 2px;">串行</div>
 <li><p>让单位时间内，STW 的时间最短 0.2 0.2 = 0.4，垃圾回收时间占比最低，这样就称吞吐量高</p>
 <center>
 <img style="border-radius: 0.3125em;
-box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/6Qhw0BCV/13.png" width="100%">
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/13.png" width="100%">
 <p>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9;
 display: inline-block;
@@ -392,7 +392,7 @@ padding: 2px;">吞吐量优先</div>
 <li><p>尽可能让单次 STW 的时间最短 0.1 0.1 0.1 0.1 0.1 = 0.5</p>
 <center>
 <img style="border-radius: 0.3125em;
-box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/wvx52tqQ/18.png" width="100%">
+box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/18.png" width="100%">
 <p>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9;
 display: inline-block;
@@ -417,7 +417,7 @@ padding: 2px;">响应时间优先</div>
 <p>新生代Serial与年老代Serial Old搭配垃圾收集过程图：</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/BQDvF97p/14.jpg" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/14.jpg" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -428,7 +428,7 @@ padding: 2px;">响应时间优先</div>
 <p>新生代Parallel Scavenge收集器与ParNew收集器工作原理类似，都是多线程的收集器，都使用的是复制算法，在垃圾收集过程中都需要暂停所有的工作线程。新生代Parallel Scavenge/ParNew与年老代Serial Old搭配垃圾收集过程图：</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/cC3dfwhC/15.jpg" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/15.jpg" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -448,7 +448,7 @@ padding: 2px;">响应时间优先</div>
 <p>新生代Parallel Scavenge和年老代Parallel Old收集器搭配运行过程图：</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/13Bs09GG/16.jpg" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/16.jpg" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -472,7 +472,7 @@ padding: 2px;">响应时间优先</div>
 <p>CMS收集器工作过程：</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/BnVwfk4W/17.jpg" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/17.jpg" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -505,7 +505,7 @@ padding: 2px;">响应时间优先</div>
 
 <h4 id="G1垃圾回收阶段"><a href="#G1垃圾回收阶段" class="headerlink" title="G1垃圾回收阶段"></a>G1垃圾回收阶段</h4><center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/Fs8Hx1g5/19.png" width="60%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/19.png" width="60%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -518,7 +518,7 @@ padding: 2px;">响应时间优先</div>
 </ul>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/R0M51z8x/20.png" width="60%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/20.png" width="60%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -528,7 +528,7 @@ padding: 2px;">响应时间优先</div>
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/YSbcbsKG/21.png" width="60%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/21.png" width="60%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -538,7 +538,7 @@ padding: 2px;">响应时间优先</div>
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/C113tsSv/23.png" width="60%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/23.png" width="60%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -555,7 +555,7 @@ padding: 2px;">响应时间优先</div>
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/wBfq7vBG/24.png" width="60%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/24.png" width="60%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -572,7 +572,7 @@ padding: 2px;">响应时间优先</div>
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/02R86h8P/25.png" width="60%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/25.png" width="60%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -592,7 +592,7 @@ padding: 2px;">响应时间优先</div>
 <p>这样做的好处是我们不用对整个老年代遍历，而只用关心脏卡区域就可以了，这样可以减少搜索范围，提高效率。</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/ncgqQFXM/27.png" width="80%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/27.png" width="80%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -621,7 +621,7 @@ padding: 2px;">响应时间优先</div>
 <h4 id="JDK-8u40-并发标记类卸载"><a href="#JDK-8u40-并发标记类卸载" class="headerlink" title="JDK 8u40 并发标记类卸载"></a>JDK 8u40 并发标记类卸载</h4><p>所有对象都经过并发标记后，就能知道哪些类不再被使用，当一个类加载器的所有类都不再使用，则卸载它所加载的所有类 -XX:+ClassUnloadingWithConcurrentMark 默认启用</p>
 <h4 id="JDK-8u60-回收巨型对象"><a href="#JDK-8u60-回收巨型对象" class="headerlink" title="JDK 8u60 回收巨型对象"></a>JDK 8u60 回收巨型对象</h4><center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/wTrkJQSg/33.png" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/33.png" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -669,7 +669,7 @@ padding: 2px;">响应时间优先</div>
 </ul>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/RCc0TvpN/30.png" width="30%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/30.png" width="30%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -680,7 +680,7 @@ padding: 2px;">响应时间优先</div>
 <p>由于是并发标记，所以在发现一个对象没有被强引用后，该对象被标记为可回收，但是标记的过程是和线程并发的，所以在这过程中可能有别的线程改变了该对象的引用。</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/PJk5k7JX/31.png" width="30%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/31.png" width="30%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -691,10 +691,10 @@ padding: 2px;">响应时间优先</div>
 <p>如果再回收此对象，则会发生重大的错误，于是在并发标记后会使用重新标记来解决此类问题。</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/DzHzx0Kb/28.png" width="50%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/28.png" width="50%">
     <p>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/bNpwC44L/29.png" width="50%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/29.png" width="50%">
     </p><p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;

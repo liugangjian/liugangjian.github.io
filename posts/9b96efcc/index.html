@@ -81,7 +81,7 @@ _java_mirror ">
 	  <h1 id="类加载阶段"><a href="#类加载阶段" class="headerlink" title="类加载阶段"></a>类加载阶段</h1><p>JVM类加载机制分为五个部分：加载，验证，准备，解析，初始化，下面我们就分别来看一下这五个过程。</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/SxYXn3mC/1.jpg" width="90%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM4/1.jpg" width="90%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -111,7 +111,7 @@ _java_mirror ">
 </ul>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/MTpqQf1N/2.jpg" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM4/2.jpg" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -209,7 +209,7 @@ _java_mirror ">
 <p>当用<code>getparent</code>方法访问父类加载器时，由于 Bootstrap 类加载器是用 C++ 代码写的， java 代码无法访问，所以显示 null.</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/8Cts9S48/3.jpg" width="60%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM4/3.jpg" width="60%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -222,7 +222,7 @@ _java_mirror ">
 <p>采用双亲委派的一个好处是比如加载位于rt.jar包中的类java.lang.Object，不管是哪个加载器加载这个类，最终都是委托给顶层的启动类加载器进行加载，<strong>这样就保证了使用不同的类加载器最终得到的都是同样一个Object对象。</strong></p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/W4w8Fh7B/4.jpg" width="100%">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="hhttps://raw.githubusercontent.com/liugangjian/blogImag/master/JVM4/4.jpg" width="100%">
     <p>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
