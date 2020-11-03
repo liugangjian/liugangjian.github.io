@@ -49,7 +49,7 @@
 	  <div class="page-header">		
   <h1><!-- 在此处写注释: <a class="brand" href="/">Culturelle</a><span class="split"></span> -->
   <!-- <i class="fa fa-tasks"></i> -->
-  <span class="title">Memory model</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-12-15</span></h1>
+  <span class="title">Memory model</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2020-04-04</span></h1>
 </div>		
 
 <div class="row page">
@@ -88,38 +88,30 @@
 <h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>以上的结果可能是正数、负数、零。为什么呢？因为 Java 中对静态变量的自增，自减并不是原子操作。</p>
 <p>例如对于 <code>i++</code> 而言（i 为静态变量），实际会产生如下的 JVM 字节码指令：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">getstatic    i  <span class="comment">// 获取静态变量i的值</span></span><br><span class="line">iconst_1        <span class="comment">// 准备常量 1</span></span><br><span class="line">iadd            <span class="comment">// 加法</span></span><br><span class="line">putstatic    i  <span class="comment">// 将修改后的值存入静态变量i</span></span><br></pre></td></tr></table></figure>
-
 <p>而对应 <code>i--</code> 也是类似：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">getstatic    i  <span class="comment">// 获取静态变量i的值</span></span><br><span class="line">iconst_1        <span class="comment">// 准备常量 1</span></span><br><span class="line">isub            <span class="comment">// 减法</span></span><br><span class="line">putstatic    i  <span class="comment">// 将修改后的值存入静态变量i</span></span><br></pre></td></tr></table></figure>
-
 <p>如果是单线程以上 8 行代码是顺序执行（不会交错）没有问题：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设i的初始值为0</span></span><br><span class="line">getstatic i     <span class="comment">// 线程1-获取静态变量i的值 线程内i=0 </span></span><br><span class="line">iconst_1        <span class="comment">// 线程1-准备常量1</span></span><br><span class="line">iadd            <span class="comment">// 线 程 1- 自 增 线 程 内 i=1</span></span><br><span class="line">putstatic i     <span class="comment">// 线程1-将修改后的值存入静态变量i 静态变量i=1 </span></span><br><span class="line">getstatic i     <span class="comment">// 线程1-获取静态变量i的值 线程内i=1 </span></span><br><span class="line">iconst_1        <span class="comment">// 线程1-准备常量1</span></span><br><span class="line">isub            <span class="comment">// 线程1-自减线程内i=0</span></span><br><span class="line">putstatic i     <span class="comment">// 线程1-将修改后的值存入静态变量i 静态变量i=0</span></span><br></pre></td></tr></table></figure>
-
 <p>但多线程下这 8 行代码可能交错运行（为什么会交错？思考一下）： 出现负数的情况：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设i的初始值为0</span></span><br><span class="line">getstatic i     <span class="comment">// 线程1-获取静态变量i的值 线程内i=0 </span></span><br><span class="line">getstatic i     <span class="comment">// 线程2-获取静态变量i的值 线程内i=0 </span></span><br><span class="line">iconst_1        <span class="comment">// 线程1-准备常量1</span></span><br><span class="line">iadd            <span class="comment">// 线程1-自增线程内 i=1</span></span><br><span class="line">putstatic i     <span class="comment">// 线程1-将修改后的值存入静态变量i 静态变量i=1 </span></span><br><span class="line">iconst_1        <span class="comment">// 线程2-准备常量1</span></span><br><span class="line">isub            <span class="comment">// 线程2-自减线程内i=-1</span></span><br><span class="line">putstatic i     <span class="comment">// 线程2-将修改后的值存入静态变量i 静态变量i=-1</span></span><br></pre></td></tr></table></figure>
-
 <p>出现正数的情况：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设i的初始值为0</span></span><br><span class="line">getstatic i     <span class="comment">// 线程1-获取静态变量i的值 线程内i=0 </span></span><br><span class="line">getstatic i     <span class="comment">// 线程2-获取静态变量i的值 线程内i=0 </span></span><br><span class="line">iconst_1        <span class="comment">// 线程1-准备常量1</span></span><br><span class="line">iadd            <span class="comment">// 线程1-自增线程内 i=1</span></span><br><span class="line">iconst_1        <span class="comment">// 线程2-准备常量1</span></span><br><span class="line">isub            <span class="comment">// 线程2-自减线程内i=-1</span></span><br><span class="line">putstatic i     <span class="comment">// 线程2-将修改后的值存入静态变量i 静态变量i=-1</span></span><br><span class="line">putstatic i     <span class="comment">// 线程1-将修改后的值存入静态变量i 静态变量i=1</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p><strong>synchronized （同步关键字）</strong></p>
 <p>语法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span>( 对象 ) &#123;</span><br><span class="line">    要作为原子操作代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>用 <code>synchronized</code> 解决并发问题：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">static</span> Object obj = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    Thread t1 = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">5000</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (obj) &#123;</span><br><span class="line">            i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    Thread t2 = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">5000</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (obj) &#123;</span><br><span class="line">            i--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    t1.start();</span><br><span class="line">    t2.start();</span><br><span class="line">    t1.join();</span><br><span class="line">    t2.join();</span><br><span class="line">    System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>如何理解呢：你可以把 obj 想象成一个房间，线程 t1，t2 想象成两个人。</p>
 <ul>
 <li>当线程 t1 执行到 synchronized(obj) 时就好比 t1 进入了这个房间，并反手锁住了门，在门内执行count++ 代码。</li>
 <li>这时候如果 t2 也运行到了 synchronized(obj) 时，它发现门被锁住了，只能在门外等待。</li>
-<li>当 t1 执行完 synchronized{} 块内的代码，这时候才会解开门上的锁，从 obj 房间出来。t2 线程这时才可以进入 obj 房间，反锁住门，执行它的 count– 代码。</li>
+<li>当 t1 执行完 synchronized{} 块内的代码，这时候才会解开门上的锁，从 obj 房间出来。t2 线程这时才可以进入 obj 房间，反锁住门，执行它的 count— 代码。</li>
 </ul>
 <blockquote>
 <p>注意：上例中 t1 和 t2 线程必须用 synchronized 锁住同一个 obj 对象，如果 t1 锁住的是 m1 对象，t2 锁住的是 m2 对象，就好比两个人分别进入了两个不同的房间，没法起到同步的效果。</p>
 </blockquote>
 <h2 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h2><h3 id="退不出的循环"><a href="#退不出的循环" class="headerlink" title="退不出的循环"></a>退不出的循环</h3><p>先来看一个现象，main 线程对 run 变量的修改对于 t 线程不可见，导致了 t 线程无法停止：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">boolean</span> run = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    Thread t = <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">        <span class="keyword">while</span>(run)&#123;</span><br><span class="line">        <span class="comment">// ....</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    t.start();</span><br><span class="line">    </span><br><span class="line">    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">    run = <span class="keyword">false</span>; <span class="comment">// 线程t不会如预想的停下来</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>为什么呢？分析一下：</p>
 <ol>
 <li>初始状态， t 线程刚开始从主内存读取了 run 的值到工作内存。<center>
@@ -156,7 +148,6 @@
 <p>它可以用来修饰成员变量和静态成员变量，他可以避免线程从自己的工作缓存中查找变量的值，必须到主存中获取它的值，线程操作 <code>volatile</code> 变量都是直接操作主存</p>
 <h2 id="可见性-1"><a href="#可见性-1" class="headerlink" title="可见性"></a>可见性</h2><p>前面例子体现的实际就是可见性，它保证的是在多个线程之间，一个线程对 volatile 变量的修改对另一个线程可见， 不能保证原子性，<strong>仅用在一个写线程，多个读线程的情况</strong>。上例从字节码理解是这样的：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getstatic run  <span class="comment">// 线程 t 获取 run true</span></span><br><span class="line">getstatic run  <span class="comment">// 线程 t 获取 run true </span></span><br><span class="line">getstatic run  <span class="comment">// 线程 t 获取 run true </span></span><br><span class="line">getstatic run  <span class="comment">// 线程 t 获取 run true</span></span><br><span class="line">putstatic run  <span class="comment">// 线程 main 修改 run 为 false，仅此一次</span></span><br><span class="line">getstatic run  <span class="comment">// 线程 t 获取 run false</span></span><br></pre></td></tr></table></figure>
-
 <p>比较一下之前我们将线程安全时举的例子：两个线程一个 <code>i++</code> 一个 <code>i--</code> ，只能保证看到最新值，不能解决指令交错</p>
 <blockquote>
 <p>注意 </p>
@@ -166,7 +157,6 @@
 </ol>
 </blockquote>
 <h2 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h2><h3 id="诡异的结果"><a href="#诡异的结果" class="headerlink" title="诡异的结果"></a>诡异的结果</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">boolean</span> ready = <span class="keyword">false</span>;</span><br><span class="line"><span class="comment">// I_Result 是一个对象，有一个属性 r1 用来保存结果，问，可能的结果有几种？</span></span><br><span class="line"><span class="comment">// 线程1 执行此方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actor1</span><span class="params">(I_Result r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ready) &#123;</span><br><span class="line">        r.r1 = num + num;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        r.r1 = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 线程2 执行此方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actor2</span><span class="params">(I_Result r)</span> </span>&#123;</span><br><span class="line">    num = <span class="number">2</span>;</span><br><span class="line">    ready = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>情况1：线程1 先执行，这时 ready = false，所以进入 else 分支结果为 1</li>
 <li>情况2：线程2 先执行 num = 2，但没来得及执行 ready = true，线程1 执行，还是进入 else 分支，结果为1</li>
@@ -181,11 +171,9 @@
 <h3 id="解决方法-2"><a href="#解决方法-2" class="headerlink" title="解决方法"></a>解决方法</h3><p>volatile 修饰的变量，可以禁用指令重排</p>
 <h3 id="指令重排"><a href="#指令重排" class="headerlink" title="指令重排"></a>指令重排</h3><p>JVM 会在不影响正确性的前提下，可以调整语句的执行顺序，思考下面一段代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> j;</span><br><span class="line">    <span class="comment">// 在某个线程内执行如下赋值操作</span></span><br><span class="line">    i = ...; <span class="comment">// 较为耗时的操作</span></span><br><span class="line">    j = ...;</span><br></pre></td></tr></table></figure>
-
 <p>可以看到，至于是先执行 i 还是 先执行 j ，对最终的结果不会产生影响。所以，上面代码真正执行时，既可以先执行 i 的赋值操作，也可以先执行 j 的赋值操作。</p>
 <p>这种特性称之为『指令重排』，多线程下『指令重排』会影响正确性，例如著名的 double-checked locking 模式实现单例</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123; &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton INSTANCE = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 实例没创建，才会进入内部的 synchronized代码块</span></span><br><span class="line">        <span class="keyword">if</span> (INSTANCE == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;</span><br><span class="line">                <span class="comment">// 也许有其它线程已经创建实例，所以再判断一次</span></span><br><span class="line">                <span class="keyword">if</span> (INSTANCE == <span class="keyword">null</span>) &#123;</span><br><span class="line">                        INSTANCE = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;   </span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>以上的实现特点是：</p>
 <ul>
 <li>懒惰实例化</li>
@@ -193,10 +181,8 @@
 </ul>
 <p>但在多线程环境下，上面的代码是有问题的， INSTANCE = new Singleton() 对应的字节码为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0: new           #2 // class cn/itcast/jvm/t4/Singleton</span><br><span class="line">3: dup</span><br><span class="line">4: invokespecial #3 // Method &quot;&lt;init&gt;&quot;:()V</span><br><span class="line">7: putstatic     #4 // Field</span><br><span class="line">INSTANCE:Lcn/itcast/jvm/t4/Singleton;</span><br></pre></td></tr></table></figure>
-
 <p>其中 4 7 两步的顺序不是固定的，也许 jvm 会优化为：先将引用地址赋值给 INSTANCE 变量后，再执行构造方法，如果两个线程 t1，t2 按如下时间序列执行：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">时间1 t1 线程执行到 INSTANCE = new Singleton();</span><br><span class="line">时间2 t1 线程分配空间，为Singleton对象生成了引用地址（0 处）</span><br><span class="line">时间3 t1 线程将引用地址赋值给 INSTANCE，这时 INSTANCE != null（7 处）</span><br><span class="line">时间4 t2 线程进入getInstance() 方法，发现 INSTANCE != null（synchronized块外），直接返回 INSTANCE</span><br><span class="line">时间5 t1 线程执行Singleton的构造方法（4 处）</span><br></pre></td></tr></table></figure>
-
 <p>这时 t1 还未完全将构造方法执行完毕，如果在构造方法中要执行很多初始化操作，那么 t2 拿到的是将是一个未初始化完毕的单例</p>
 <p>解决方法：对 INSTANCE 使用 volatile 修饰即可，可以禁用指令重排，但要注意在 JDK 5 以上的版本的 volatile 才会真正有效</p>
 <h3 id="happens-before"><a href="#happens-before" class="headerlink" title="happens-before"></a>happens-before</h3><p>happens-before 规定了哪些写操作对其它线程的读操作可见，它是可见性与有序性的一套规则总结，抛开以下 happens-before 规则，JMM 并不能保证一个线程对共享变量的写，对于其它线程对该共享变量的读可见</p>
@@ -208,7 +194,6 @@
 </ul>
 <h2 id="CAS-与原子类"><a href="#CAS-与原子类" class="headerlink" title="CAS 与原子类"></a>CAS 与原子类</h2><h3 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h3><p>CAS 即 Compare and Swap ，它体现的一种乐观锁的思想，比如多个线程要对一个共享的整型变量执行 +1 操作：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 需要不断尝试</span></span><br><span class="line"><span class="comment">// 需要不断尝试</span></span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">    <span class="keyword">int</span> 旧值 = 共享变量 ; <span class="comment">// 比如拿到了当前值 0</span></span><br><span class="line">    <span class="keyword">int</span> 结果 = 旧值 + <span class="number">1</span>; <span class="comment">// 在旧值 0 的基础上增加 1 ，正确结果是 1</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    这时候如果别的线程把共享变量改成了 5，本线程的正确结果 1 就作废了，这时候</span></span><br><span class="line"><span class="comment">    compareAndSwap 返回 false，重新尝试，直到：</span></span><br><span class="line"><span class="comment">    compareAndSwap 返回 true，表示我本线程做修改的同时，别的线程没有干扰</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">if</span>( compareAndSwap ( 旧值, 结果 )) &#123;</span><br><span class="line">    <span class="comment">// 成功，退出循环</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>获取共享变量时，为了保证该变量的可见性，需要使用 volatile 修饰。结合 CAS 和 volatile 可以实现无锁并发，适用于竞争不激烈、多核 CPU 的场景下。</p>
 <p>因为没有使用 synchronized，所以线程不会陷入阻塞，这是效率提升的因素之一但如果竞争激烈，可以想到重试必然频繁发生，反而效率会受影响</p>
 <p>CAS 底层依赖于一个 Unsafe 类来直接调用操作系统底层的 CAS 指令，直接使用 Unsafe 也可以对线程安全进行保护.</p>
@@ -218,7 +203,6 @@
 </ul>
 <h3 id="原子操作类"><a href="#原子操作类" class="headerlink" title="原子操作类"></a>原子操作类</h3><p>juc（java.util.concurrent）中提供了原子操作类，可以提供<code>线程安全</code>的操作，例如：AtomicInteger、AtomicBoolean等，它们底层就是采用 CAS 技术 + volatile 来实现的。可以使用 AtomicInteger 改写之前的例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建原子整数对象</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> AtomicInteger i = <span class="keyword">new</span> AtomicInteger(<span class="number">0</span>);</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    Thread t1 = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">5000</span>; j++) &#123;</span><br><span class="line">            i.getAndIncrement();    <span class="comment">// 获取并且自增 i++</span></span><br><span class="line">            <span class="comment">// i.incrementAndGet(); // 自增并且获取 ++i</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    Thread t2 = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">5000</span>; j++) &#123;</span><br><span class="line">            i.getAndDecrement(); <span class="comment">// 获取并且自减 i--</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    t1.start();</span><br><span class="line">    t2.start();</span><br><span class="line">    t1.join();</span><br><span class="line">    t2.join();</span><br><span class="line">    System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="synchronized-优化"><a href="#synchronized-优化" class="headerlink" title="synchronized 优化"></a>synchronized 优化</h2><p>Java HotSpot 虚拟机中，每个对象都有对象头（包括 class 指针和 Mark Word）。Mark Word 平时存储这个对象的 <code>哈希码</code>、<code>分代年龄</code>，当加锁时，这些信息就根据情况被替换为<code>标记位</code>、<code>线程锁记录指针</code>、<code>重量级锁指针</code>、<code>线程ID</code>等内容.</p>
 <h3 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h3><p>如果一个对象虽然有多线程访问，但多线程访问的时间是错开的（也就是没有竞争），那么可以使用轻量级锁来优化。这就好比：</p>
 <ul>
@@ -228,7 +212,6 @@
 <p>而重量级锁就不是那么用课本占座那么简单了，可以想象线程 A 走之前，把座位用一个铁栅栏围起来假设有两个方法同步块，利用同一个对象加锁</p>
 <p>假设有两个方法同步块，利用同一个对象加锁：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> Object obj = <span class="keyword">new</span> Object();</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span>( obj ) &#123;</span><br><span class="line">        <span class="comment">// 同步块 A</span></span><br><span class="line">        method2();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span>( obj ) &#123;</span><br><span class="line">    <span class="comment">// 同步块 B</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>每个线程都的栈帧都会包含一个锁记录的结构，内部可以存储锁定对象的 Mark Word.</p>
 <h3 id="锁膨胀"><a href="#锁膨胀" class="headerlink" title="锁膨胀"></a>锁膨胀</h3><p>如果在尝试加轻量级锁的过程中，CAS 操作无法成功，这时一种情况就是有其它线程为此对象加上了轻量级锁（有竞争），这时需要进行锁膨胀，将轻量级锁变为重量级锁。</p>
 <h3 id="重量锁"><a href="#重量锁" class="headerlink" title="重量锁"></a>重量锁</h3><p>重量级锁竞争的时候，还可以使用自旋来进行优化，如果当前线程自旋成功（即这时候持锁线程已经退出了同步块，释放了锁），这时当前线程就可以避免阻塞。</p>
@@ -248,47 +231,58 @@
 </ul>
 <p><a href="https://img.vim-cn.com/80/b9a87c62c352195c80553fa2c8bb87888164fc.pdf" target="_blank" rel="noopener">可以参考这篇论文</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> Object obj = <span class="keyword">new</span> Object();</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span>( obj ) &#123;</span><br><span class="line">        <span class="comment">// 同步块 A</span></span><br><span class="line">        method2();</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span>( obj ) &#123;</span><br><span class="line">        <span class="comment">// 同步块 B</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>线程 1</th>
-<th>对象 Mark</th>
+<th>对象 Mark   </th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>访问同步块 A ，检查 Mark 中是否有线程 ID</td>
 <td>101（无锁可偏向）</td>
+<td></td>
 </tr>
 <tr>
 <td>尝试加偏向锁</td>
 <td>101（无锁可偏向）对象 hashCode</td>
+<td></td>
 </tr>
 <tr>
 <td>成功</td>
 <td>101（无锁可偏向）线程ID</td>
+<td></td>
 </tr>
 <tr>
 <td>执行同步块 A</td>
 <td>101（无锁可偏向）线程ID</td>
+<td></td>
 </tr>
 <tr>
 <td>访问同步块 B，检查 Mark 中是否有线程 ID</td>
 <td>101（无锁可偏向）线程ID</td>
+<td></td>
 </tr>
 <tr>
 <td>是自己的线程 ID，锁是自己的，无需做更多操作</td>
 <td>101（无锁可偏向）线程ID</td>
+<td></td>
 </tr>
 <tr>
 <td>执行同步块 B</td>
 <td>101（无锁可偏向）线程ID</td>
+<td></td>
 </tr>
 <tr>
 <td>执行完毕</td>
 <td>101（无锁可偏向）对象 hashCode</td>
+<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="其他优化"><a href="#其他优化" class="headerlink" title="其他优化"></a>其他优化</h2><h3 id="减少上锁时间"><a href="#减少上锁时间" class="headerlink" title="减少上锁时间"></a>减少上锁时间</h3><p>同步代码块中尽量短</p>
 <h3 id="减少锁的粒度"><a href="#减少锁的粒度" class="headerlink" title="减少锁的粒度"></a>减少锁的粒度</h3><p>将一个锁拆分为多个锁提高并发度，例如：</p>
 <ul>
@@ -297,7 +291,6 @@
 </ul>
 <h3 id="锁粗化"><a href="#锁粗化" class="headerlink" title="锁粗化"></a>锁粗化</h3><p>多次循环进入同步块不如同步块内多次循环 另外 JVM 可能会做如下优化，把多次 append 的加锁操作粗化为一次（因为都是对同一个对象加锁，没必要重入多次）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> StringBuffer().append(<span class="string">"a"</span>).append(<span class="string">"b"</span>).append(<span class="string">"c"</span>);</span><br></pre></td></tr></table></figure>
-
 <h3 id="锁消除"><a href="#锁消除" class="headerlink" title="锁消除"></a>锁消除</h3><p>JVM 会进行代码的逃逸分析，例如某个加锁对象是方法内局部变量，不会被其它线程所访问到，这时候就会被即时编译器忽略掉所有同步操作。</p>
 <h3 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h3><p>CopyOnWriteArrayList ConyOnWriteSet</p>
 <p>参考：<br><a href="https://wiki.openjdk.java.net/display/HotSpot/Synchronization" target="_blank" rel="noopener">https://wiki.openjdk.java.net/display/HotSpot/Synchronization</a><br><a href="http://luojinping.com/2015/07/09/java锁优化/" target="_blank" rel="noopener">http://luojinping.com/2015/07/09/java锁优化/</a><br><a href="https://www.infoq.cn/article/java-se-16-synchronized" target="_blank" rel="noopener">https://www.infoq.cn/article/java-se-16-synchronized</a><br><a href="https://www.jianshu.com/p/9932047a89be" target="_blank" rel="noopener">https://www.jianshu.com/p/9932047a89be</a><br><a href="https://www.cnblogs.com/sheeva/p/6366782.html" target="_blank" rel="noopener">https://www.cnblogs.com/sheeva/p/6366782.html</a><br><a href="https://stackoverflow.com/questions/46312817/does-java-ever-rebias-an-individual-lock" target="_blank" rel="noopener">https://stackoverflow.com/questions/46312817/does-java-ever-rebias-an-individual-lock</a></p>
@@ -348,7 +341,7 @@
 	
 	
 	
-		<li class="prev"><a href="/posts/9b96efcc/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+		<li class="prev"><a href="/posts/a2f0b3c2/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
 	
 	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
 	

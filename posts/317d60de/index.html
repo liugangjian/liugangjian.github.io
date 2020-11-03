@@ -54,7 +54,7 @@
 	  <div class="page-header">		
   <h1><!-- 在此处写注释: <a class="brand" href="/">Culturelle</a><span class="split"></span> -->
   <!-- <i class="fa fa-tasks"></i> -->
-  <span class="title">Garbage collection</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-12-06</span></h1>
+  <span class="title">Garbage collection</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2020-04-04</span></h1>
 </div>		
 
 <div class="row page">
@@ -291,50 +291,63 @@
 <h4 id="新生代——复制算法"><a href="#新生代——复制算法" class="headerlink" title="新生代——复制算法"></a>新生代——复制算法</h4><p>每次垃圾收集都能发现大批对象已死, 只有少量存活. 因此选用复制算法, 只需要付出少量存活对象的复制成本就可以完成收集.</p>
 <h4 id="老年代——标记整理算法"><a href="#老年代——标记整理算法" class="headerlink" title="老年代——标记整理算法"></a>老年代——标记整理算法</h4><p>因为对象存活率高、没有额外空间对它进行分配担保, 就必须采用“标记—清理”或“标记—整理”算法来进行回收, 不必进行内存复制, 且直接腾出空闲内存.</p>
 <h3 id="分区收集算法"><a href="#分区收集算法" class="headerlink" title="分区收集算法"></a>分区收集算法</h3><p>分区算法则将整个堆空间划分为连续的不同小区间, 每个小区间独立使用, 独立回收. 这样做的好处是可以控制一次回收多少个小区间 , 根据目标停顿时间, 每次合理地回收若干个小区间(而不是整个堆), 从而减少一次GC所产生的停顿。</p>
-<h3 id="分代回收相关参数"><a href="#分代回收相关参数" class="headerlink" title="分代回收相关参数"></a>分代回收相关参数</h3><table>
+<h3 id="分代回收相关参数"><a href="#分代回收相关参数" class="headerlink" title="分代回收相关参数"></a>分代回收相关参数</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>名词</th>
-<th>指令</th>
+<th>指令 </th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>堆初始大小</td>
 <td>-Xms</td>
+<td></td>
 </tr>
 <tr>
 <td>堆最大大小</td>
 <td>-Xmx 或 -XX:MaxHeapSize=size</td>
+<td></td>
 </tr>
 <tr>
 <td>新生代大小</td>
 <td>-Xmn 或 (-XX:NewSize=size + -XX:MaxNewSize=size )</td>
+<td></td>
 </tr>
 <tr>
 <td>幸存区比例（动态）</td>
 <td>-XX:InitialSurvivorRatio=ratio 和 -XX:+UseAdaptiveSizePolicy</td>
+<td></td>
 </tr>
 <tr>
 <td>幸存区比例</td>
 <td>-XX:SurvivorRatio=ratio</td>
+<td></td>
 </tr>
 <tr>
 <td>晋升阈值</td>
 <td>-XX:MaxTenuringThreshold=threshold</td>
+<td></td>
 </tr>
 <tr>
 <td>晋升详情</td>
 <td>-XX:+PrintTenuringDistribution</td>
+<td></td>
 </tr>
 <tr>
 <td>GC详情</td>
 <td>-XX:+PrintGCDetails -verbose:gc</td>
+<td></td>
 </tr>
 <tr>
 <td>Full GC 前 Minor GC</td>
 <td>-XX:+ScavengeBeforeFullGC</td>
+<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h2><p>Java堆内存被划分为新生代和年老代两部分</p>
 <ul>
 <li>新生代主要使用复制和标记-清除垃圾回收算法；</li>
@@ -354,8 +367,7 @@
 <ol>
 <li><p>串行</p>
 <ul>
-<li><p>单线程</p>
-</li>
+<li>单线程</li>
 <li><p>堆内存较小，适合个人电脑</p>
 <center>
 <img style="border-radius: 0.3125em;
@@ -386,10 +398,8 @@ padding: 2px;">吞吐量优先</div>
 </li>
 <li><p>响应时间优先</p>
 <ul>
-<li><p>多线程</p>
-</li>
-<li><p>堆内存较大，多核 cpu</p>
-</li>
+<li>多线程</li>
+<li>堆内存较大，多核 cpu</li>
 <li><p>尽可能让单次 STW 的时间最短 0.1 0.1 0.1 0.1 0.1 = 0.5</p>
 <center>
 <img style="border-radius: 0.3125em;
@@ -503,7 +513,6 @@ padding: 2px;">响应时间优先</div>
 <p>随着堆内存的增大，G1回收器较CMS的优势逐渐明显。</p>
 <p>相关 JVM 参数</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseG1GC</span><br><span class="line">-XX:G1HeapRegionSize=size</span><br><span class="line">-XX:MaxGCPauseMillis=time</span><br></pre></td></tr></table></figure>
-
 <h4 id="G1垃圾回收阶段"><a href="#G1垃圾回收阶段" class="headerlink" title="G1垃圾回收阶段"></a>G1垃圾回收阶段</h4><center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/19.png" width="60%">
@@ -553,7 +562,6 @@ padding: 2px;">响应时间优先</div>
 <li>当老年代占用堆空间比例达到阈值时，进行并发标记（不会 STW），由下面的 JVM 参数决定</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:InitiatingHeapOccupancyPercent=percent(默认<span class="number">45</span>%)</span><br></pre></td></tr></table></figure>
-
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/24.png" width="60%">
@@ -570,7 +578,6 @@ padding: 2px;">响应时间优先</div>
 <li>拷贝存活（Evacuation）会 STW</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:MaxGCPauseMillis=ms</span><br></pre></td></tr></table></figure>
-
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://raw.githubusercontent.com/liugangjian/blogImag/master/JVM2/25.png" width="60%">
@@ -603,11 +610,9 @@ padding: 2px;">响应时间优先</div>
 
 <h4 id="JDK-8u20-字符串去重"><a href="#JDK-8u20-字符串去重" class="headerlink" title="JDK 8u20 字符串去重"></a>JDK 8u20 字符串去重</h4><ul>
 <li>优点：节省大量内存</li>
-<li>缺点：略微多占用了 cpu 时间，新生代回收时间略微增加</li>
-<li>XX:+UseStringDeduplication</li>
+<li>缺点：略微多占用了 cpu 时间，新生代回收时间略微增加<br>-XX:+UseStringDeduplication</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="keyword">new</span> String(<span class="string">"hello"</span>); <span class="comment">// char[]&#123;'h','e','l','l','o'&#125;</span></span><br><span class="line">String s2 = <span class="keyword">new</span> String(<span class="string">"hello"</span>); <span class="comment">// char[]&#123;'h','e','l','l','o'&#125;</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>将所有新分配的字符串放入一个队列</li>
 <li>当新生代回收时，G1并发检查是否有字符串重复</li>
@@ -724,11 +729,8 @@ padding: 2px;">响应时间优先</div>
 <p>CMS和G1由于是并发标记和收集的阶段，如果回收的速度大于垃圾产生的速度，这时候还谈不上发生Full GC. 只有当垃圾的产生速度大于回速度的时候，会退化为串行的垃圾收集器，触发Full GC，导致STW，使得响应时间变长。</p>
 <p>可以通过打印GC日志观察是否又FUll GC字样来判断是否发生了Full GC.</p>
 <h3 id="垃圾回收器相关参数"><a href="#垃圾回收器相关参数" class="headerlink" title="垃圾回收器相关参数"></a>垃圾回收器相关参数</h3><h4 id="串行"><a href="#串行" class="headerlink" title="串行"></a>串行</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseSerialGC = Serial + SerialOld</span><br></pre></td></tr></table></figure>
-
 <h4 id="吞吐量优先"><a href="#吞吐量优先" class="headerlink" title="吞吐量优先"></a>吞吐量优先</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseParallelGC ~ -XX:+UseParallelOldGC</span><br><span class="line">-XX:GCTimeRatio=ratio</span><br><span class="line">-XX:MaxGCPauseMillis=ms</span><br><span class="line">-XX:ParallelGCThreads=n</span><br></pre></td></tr></table></figure>
-
 <h4 id="响应时间优先"><a href="#响应时间优先" class="headerlink" title="响应时间优先"></a>响应时间优先</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseConcMarkSweepGC ~ -XX:+UseParNewGC ~ SerialOld</span><br><span class="line">-XX:ParallelGCThreads=n ~ -XX:ConcGCThreads=threads</span><br><span class="line">-XX:CMSInitiatingOccupancyFraction=percent</span><br><span class="line">-XX:+CMSScavengeBeforeRemark</span><br></pre></td></tr></table></figure>
-
 <h2 id="GC-调优"><a href="#GC-调优" class="headerlink" title="GC 调优"></a>GC 调优</h2><ul>
 <li>掌握 GC 相关的 VM 参数，会基本的空间调整</li>
 <li>掌握相关工具</li>
@@ -787,18 +789,15 @@ padding: 2px;">响应时间优先</div>
 <li>晋升阈值配置得当，让长时间存活对象尽快晋升</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-XX:MaxTenuringThreshold=threshold</span><br><span class="line">-XX:+PrintTenuringDistribution</span><br><span class="line"></span><br><span class="line">Desired survivor size <span class="number">48286924</span> bytes, <span class="keyword">new</span> threshold <span class="number">10</span> (max <span class="number">10</span>)</span><br><span class="line">- age <span class="number">1</span>: <span class="number">28992024</span> bytes, <span class="number">28992024</span> total</span><br><span class="line">- age <span class="number">2</span>: <span class="number">1366864</span> bytes, <span class="number">30358888</span> total</span><br><span class="line">- age <span class="number">3</span>: <span class="number">1425912</span> bytes, <span class="number">31784800</span> total</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
 <h3 id="老年代调优"><a href="#老年代调优" class="headerlink" title="老年代调优"></a>老年代调优</h3><p>以 CMS 为例</p>
 <ul>
 <li>CMS 的老年代内存越大越好</li>
 <li>先尝试不做调优，如果没有 Full GC 那么已经…，否则先尝试调优新生代</li>
 <li>观察发生 Full GC 时老年代内存占用，将老年代内存预设调大 1/4 ~ 1/3<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:CMSInitiatingOccupancyFraction=percent<span class="comment">//发生老年代垃圾回收的阈值</span></span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
 <h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><ul>
-<li><p>案例1 Full GC 和 Minor GC频繁</p>
-<ul>
+<li>案例1 Full GC 和 Minor GC频繁<ul>
 <li>可能是由于新生代的内存太小，导致在新对象创建时，Survivor区空间不够而需要下调晋升代数，导致很多对象提前放入老年代中从而恶性循环，因此可以尝试调大新生代的空间。</li>
 </ul>
 </li>
@@ -836,10 +835,6 @@ padding: 2px;">响应时间优先</div>
 	
 		
 			
-		
-	
-		
-			
 			
 		
 	
@@ -847,6 +842,10 @@ padding: 2px;">响应时间优先</div>
 			
 			
 			
+		
+			
+		
+	
 		
 	
 		
