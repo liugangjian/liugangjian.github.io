@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>spring on Gangjian Liu</title>
     <link>https://liugangjian.github.io/tags/spring/</link>
     <description>Recent content in spring on Gangjian Liu</description>
-    <image>
-      <url>https://liugangjian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://liugangjian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 18 Jan 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://liugangjian.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Usage  for Java annotations</title>
+      <title>Java Annotations - Introduction</title>
       <link>https://liugangjian.github.io/posts/usage-for-java-custom-annotations/</link>
       <pubDate>Tue, 18 Jan 2022 11:30:03 +0000</pubDate>
       
       <guid>https://liugangjian.github.io/posts/usage-for-java-custom-annotations/</guid>
-      <description>Mainly describes the difference and relationship between Java annotation, AOP and Interceptor.</description>
+      <description>Java custom annotations are generally used with  interceptors  or  AOP . Using the custom annotations to design your own framework can make the code look very elegant.
+What is Annotations ?  Java annotation is an annotation mechanism, introduced by jdk5.0. Classes, methods, variables, parameters and packages in the Java language can be labeled. Unlike the Javadoc, Annotation can obtain annotation content through reflection.
+ When the compiler generates class files, annotations can be embedded in bytecode.</description>
     </item>
     
   </channel>
