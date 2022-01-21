@@ -2,29 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://liugangjian.github.io/posts/hugo-automatic-deployment/</loc>
+    <lastmod>2022-01-20T11:30:03+00:00</lastmod>
+  </url><url>
     <loc>https://liugangjian.github.io/posts/java-annotations-introduction/</loc>
     <lastmod>2022-01-18T11:30:03+00:00</lastmod>
   </url><url>
-    <loc>https://liugangjian.github.io/posts/my-first-post/</loc>
-    <lastmod>2020-09-15T11:30:03+00:00</lastmod>
-  </url><url>
     <loc>https://liugangjian.github.io/</loc>
-    <lastmod>2022-01-18T11:30:03+00:00</lastmod>
+    <lastmod>2022-01-20T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://liugangjian.github.io/tags/github/</loc>
+    <lastmod>2022-01-20T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://liugangjian.github.io/tags/hugo/</loc>
+    <lastmod>2022-01-20T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://liugangjian.github.io/posts/</loc>
+    <lastmod>2022-01-20T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://liugangjian.github.io/tags/</loc>
+    <lastmod>2022-01-20T11:30:03+00:00</lastmod>
   </url><url>
     <loc>https://liugangjian.github.io/tags/java/</loc>
     <lastmod>2022-01-18T11:30:03+00:00</lastmod>
   </url><url>
-    <loc>https://liugangjian.github.io/posts/</loc>
-    <lastmod>2022-01-18T11:30:03+00:00</lastmod>
-  </url><url>
     <loc>https://liugangjian.github.io/tags/spring/</loc>
     <lastmod>2022-01-18T11:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://liugangjian.github.io/tags/</loc>
-    <lastmod>2022-01-18T11:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://liugangjian.github.io/tags/first/</loc>
-    <lastmod>2020-09-15T11:30:03+00:00</lastmod>
   </url><url>
     <loc>https://liugangjian.github.io/archives/</loc>
   </url><url>
