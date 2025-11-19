@@ -5,41 +5,50 @@
     <link>https://liugangjian.github.io/</link>
     <description>Recent content on Gangjian Liu</description>
     <image>
+      <title>Gangjian Liu</title>
       <url>https://liugangjian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://liugangjian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 23 May 2022 16:32:19 +0800</lastBuildDate><atom:link href="https://liugangjian.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- 0.152.2</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 23 May 2022 16:32:19 +0800</lastBuildDate>
+    <atom:link href="https://liugangjian.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A successful Git branching model</title>
       <link>https://liugangjian.github.io/posts/a-successful-git-branching-model/</link>
       <pubDate>Mon, 23 May 2022 16:32:19 +0800</pubDate>
-      
       <guid>https://liugangjian.github.io/posts/a-successful-git-branching-model/</guid>
-      <description>Why git? For a thorough discussion on the pros and cons of Git compared to centralized source code control systems. As a developer, I prefer Git above all other tools around today. Git really changed the way developers think of merging and branching. From the classic CVS/Subversion world I came from, merging/branching has always been considered a bit scary and something you only do every once in a while.
-As a consequence of its simplicity and repetitive nature, branching and merging are no longer something to be afraid of.</description>
+      <description>&lt;h2 id=&#34;why-git&#34;&gt;Why git?&lt;/h2&gt;
+&lt;p&gt;For a thorough discussion on the pros and cons of Git compared to centralized source code control systems. As a developer, I prefer Git above all other tools around today. Git really changed the way developers think of merging and branching. From the classic CVS/Subversion world I came from, merging/branching has always been considered a bit scary and something you only do every once in a while.&lt;/p&gt;
+&lt;p&gt;As a consequence of its simplicity and repetitive nature, branching and merging are no longer something to be afraid of. Version control tools are supposed to assist in branching/merging more than anything else.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Hugo Automatic deployment</title>
       <link>https://liugangjian.github.io/posts/hugo-automatic-deployment/</link>
       <pubDate>Thu, 20 Jan 2022 11:30:03 +0000</pubDate>
-      
       <guid>https://liugangjian.github.io/posts/hugo-automatic-deployment/</guid>
-      <description>GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. Make code reviews, branch management, and issue triaging work the way you want.
- I use Github Actions to deploy site source files (eg: hugoBlog source) to GitHub Pages (eg: liugangjian.github.io )  automatically .
-My blog project architecture is shown below. In the figure we can clearly see there are three repositories.</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD.
+Build, test, and deploy your code right from GitHub. Make code reviews, branch management,
+and issue triaging work the way you want.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I use &lt;a href=&#34;https://github.com/peaceiris/actions-gh-pages/blob/main/README.md&#34;&gt;Github Actions&lt;/a&gt; to deploy site source files
+(eg: hugoBlog source) to GitHub Pages (eg: &lt;a href=&#34;https://github.com/liugangjian/liugangjian.github.io/tree/master/posts&#34;&gt;liugangjian.github.io&lt;/a&gt; ) &lt;mark&gt; automatically &lt;/mark&gt;.&lt;/p&gt;
+&lt;p&gt;My blog project architecture is shown below. In the figure we can clearly see there are three repositories.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Java Annotations Introduction</title>
-      <link>https://liugangjian.github.io/posts/java-annotations-introduction/</link>
+      <link>https://liugangjian.github.io/posts/java-annotations---introduction/</link>
       <pubDate>Tue, 18 Jan 2022 11:30:03 +0000</pubDate>
-      
-      <guid>https://liugangjian.github.io/posts/java-annotations-introduction/</guid>
+      <guid>https://liugangjian.github.io/posts/java-annotations---introduction/</guid>
       <description>Mainly describes the difference and relationship between Java annotation, AOP and Interceptor.</description>
     </item>
-    
-    
+    <item>
+      <title>我的第十篇文章！</title>
+      <link>https://liugangjian.github.io/posts/my-first-post/</link>
+      <pubDate>Sat, 01 Jan 2022 11:30:03 +0000</pubDate>
+      <guid>https://liugangjian.github.io/posts/my-first-post/</guid>
+      <description>Algorithm complexity analysis with mathematical formulas and Big O notation examples.</description>
+    </item>
   </channel>
 </rss>

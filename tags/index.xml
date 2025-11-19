@@ -5,55 +5,55 @@
     <link>https://liugangjian.github.io/tags/</link>
     <description>Recent content in Tags on Gangjian Liu</description>
     <image>
+      <title>Gangjian Liu</title>
       <url>https://liugangjian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://liugangjian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 23 May 2022 16:32:19 +0800</lastBuildDate><atom:link href="https://liugangjian.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- 0.152.2</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 23 May 2022 16:32:19 +0800</lastBuildDate>
+    <atom:link href="https://liugangjian.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>git</title>
+      <title>Git</title>
       <link>https://liugangjian.github.io/tags/git/</link>
       <pubDate>Mon, 23 May 2022 16:32:19 +0800</pubDate>
-      
       <guid>https://liugangjian.github.io/tags/git/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>github</title>
+      <title>Github</title>
       <link>https://liugangjian.github.io/tags/github/</link>
       <pubDate>Thu, 20 Jan 2022 11:30:03 +0000</pubDate>
-      
       <guid>https://liugangjian.github.io/tags/github/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>hugo</title>
+      <title>Hugo</title>
       <link>https://liugangjian.github.io/tags/hugo/</link>
       <pubDate>Thu, 20 Jan 2022 11:30:03 +0000</pubDate>
-      
       <guid>https://liugangjian.github.io/tags/hugo/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>java</title>
+      <title>Java</title>
       <link>https://liugangjian.github.io/tags/java/</link>
       <pubDate>Tue, 18 Jan 2022 11:30:03 +0000</pubDate>
-      
       <guid>https://liugangjian.github.io/tags/java/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>spring</title>
+      <title>Spring</title>
       <link>https://liugangjian.github.io/tags/spring/</link>
       <pubDate>Tue, 18 Jan 2022 11:30:03 +0000</pubDate>
-      
       <guid>https://liugangjian.github.io/tags/spring/</guid>
       <description></description>
     </item>
-    
+    <item>
+      <title>First</title>
+      <link>https://liugangjian.github.io/tags/first/</link>
+      <pubDate>Sat, 01 Jan 2022 11:30:03 +0000</pubDate>
+      <guid>https://liugangjian.github.io/tags/first/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>
