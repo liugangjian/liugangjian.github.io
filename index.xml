@@ -50,5 +50,34 @@ and issue triaging work the way you want.&lt;/p&gt;
       <guid>https://liugangjian.github.io/posts/mcp-interactive-presentation/</guid>
       <description>探索MCP（Model Context Protocol）的强大功能，通过交互式演示了解其工作原理</description>
     </item>
+    <item>
+      <title>点击热力图分析</title>
+      <link>https://liugangjian.github.io/pages/heatmap/</link>
+      <pubDate>Fri, 19 Jan 2024 13:00:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/pages/heatmap/</guid>
+      <description>&lt;h1 id=&#34;-博客点击热力图分析&#34;&gt;🔥 博客点击热力图分析&lt;/h1&gt;
+&lt;iframe
+  src=&#34;https://liugangjian.github.io/heatmap/&#34;
+  width=&#34;100%&#34;
+  height=&#34;800px&#34;
+  frameborder=&#34;0&#34;
+  style=&#34;border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);&#34;&gt;
+&lt;/iframe&gt;
+&lt;h2 id=&#34;-使用说明&#34;&gt;💡 使用说明&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;查看热力图&lt;/strong&gt;: 在任何博客页面按住 &lt;code&gt;Alt&lt;/code&gt; 键即可查看该页面的热力图&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分析数据&lt;/strong&gt;: 在这个页面查看详细的点击统计数据&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;清除数据&lt;/strong&gt;: 点击分析页面中的&amp;quot;清除所有数据&amp;quot;按钮&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;导出数据&lt;/strong&gt;: 点击&amp;quot;导出数据&amp;quot;下载JSON格式的点击数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;-功能特性&#34;&gt;🎯 功能特性&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;实时追踪&lt;/strong&gt;: 自动记录用户点击行为&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;彩色热力图&lt;/strong&gt;: 红(高频) → 黄(中频) → 蓝(低频)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据统计&lt;/strong&gt;: 显示总点击次数、分析页面数、平均点击等&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;隐私保护&lt;/strong&gt;: 数据仅存储在本地浏览器中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;热力图功能帮助你了解博客的哪些区域最受用户关注！&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
