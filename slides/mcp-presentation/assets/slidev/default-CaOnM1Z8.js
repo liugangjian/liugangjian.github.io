@@ -1,0 +1,1 @@
+import{f as s,o as t,j as o}from"../modules/vue-BKqlk5iM.js";import{b as a}from"../index-DcMOTOCm.js";const n={},l={class:"slidev-layout default"};function r(e,c){return t(),s("div",l,[o(e.$slots,"default")])}const u=a(n,[["render",r],["__file","/Users/liugangjian/quickstart/slides/mcp-presentation/node_modules/@slidev/client/layouts/default.vue"]]);export{u as I};
