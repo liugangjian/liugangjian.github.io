@@ -496,9 +496,60 @@ class ShareImageGenerator {
         // 克隆元素以避免修改原始页面
         const articleClone = articleElement.cloneNode(true);
 
-        // 移除所有图片以避免CORS问题
+        // 处理图片，优化显示效果
         const images = articleClone.querySelectorAll('img');
-        images.forEach(img => img.remove());
+
+        // 优化图片显示
+        for (let i = 0; i < images.length; i++) {
+            const img = images[i];
+
+            try {
+                // 设置crossOrigin属性，尝试支持所有图片
+                img.crossOrigin = 'anonymous';
+
+                // 确保图片有合适的尺寸和样式
+                if (!img.style.width && !img.width) {
+                    img.style.width = 'auto';
+                    img.style.maxWidth = '100%';
+                    img.style.height = 'auto';
+                }
+
+                // 确保图片有alt属性
+                if (!img.alt) {
+                    img.alt = '文章图片';
+                }
+
+                // 添加图片加载错误处理
+                img.onerror = function() {
+                    console.warn('图片加载失败:', this.src);
+                    // 如果图片加载失败，显示一个简单的占位符
+                    this.style.display = 'none';
+                    const placeholder = document.createElement('div');
+                    placeholder.style.cssText = `
+                        display: inline-block;
+                        background: #f8f9fa;
+                        border: 1px solid #e2e8f0;
+                        border-radius: 6px;
+                        padding: 12px;
+                        text-align: center;
+                        color: #666;
+                        font-size: 12px;
+                        margin: 4px 0;
+                        min-width: 120px;
+                        max-width: 100%;
+                    `;
+                    placeholder.innerHTML = `
+                        <div style="font-size: 16px; margin-bottom: 4px;">🖼️</div>
+                        <div style="font-weight: 500;">${this.alt || '图片'}</div>
+                        <div style="font-size: 10px; color: #999; margin-top: 4px;">无法显示</div>
+                    `;
+                    this.parentNode.insertBefore(placeholder, this.nextSibling);
+                };
+
+            } catch (error) {
+                console.warn('处理图片时出错:', error);
+            }
+        }
 
         // 特殊处理iframe元素，替换为占位符
         const iframes = articleClone.querySelectorAll('iframe');
@@ -573,12 +624,12 @@ class ShareImageGenerator {
 
             console.log('截图尺寸:', { width, height, removedImages: images.length, iframeCount: iframes.length });
 
-            // 简化配置，避免跨域问题
+            // 优化配置，支持本地图片显示
             const canvas = await html2canvas(tempContainer, {
                 scale: this.options.scale,
                 backgroundColor: '#ffffff',
-                useCORS: false,
-                allowTaint: false,
+                useCORS: true,
+                allowTaint: true,
                 foreignObjectRendering: false,
                 logging: false,
                 width: width,
@@ -590,7 +641,23 @@ class ShareImageGenerator {
                 x: 0,
                 y: 0,
                 removeContainer: true,
-                imageTimeout: 5000
+                imageTimeout: 15000,
+                onclone: function(clonedDoc, element) {
+                    // 在克隆文档中进一步处理图片
+                    const clonedImages = clonedDoc.querySelectorAll('img');
+                    clonedImages.forEach(clonedImg => {
+                        // 对本地图片设置crossOrigin
+                        if (clonedImg.src && (clonedImg.src.startsWith(window.location.origin) || clonedImg.src.startsWith('/'))) {
+                            clonedImg.crossOrigin = 'anonymous';
+                            // 确保图片尺寸正确
+                            if (!clonedImg.style.width && !clonedImg.width) {
+                                clonedImg.style.width = 'auto';
+                                clonedImg.style.maxWidth = '100%';
+                                clonedImg.style.height = 'auto';
+                            }
+                        }
+                    });
+                }
             });
 
             console.log('截图完成，canvas尺寸:', { width: canvas.width, height: canvas.height });
@@ -803,6 +870,50 @@ class ShareImageGenerator {
         }
     }
 
+      // 将图片转换为base64
+    convertImageToBase64(img, index) {
+        return new Promise((resolve, reject) => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // 创建临时Image对象
+            const tempImg = new Image();
+            tempImg.crossOrigin = 'anonymous';
+
+            tempImg.onload = () => {
+                try {
+                    // 设置canvas尺寸
+                    canvas.width = tempImg.naturalWidth;
+                    canvas.height = tempImg.naturalHeight;
+
+                    // 绘制图片到canvas
+                    ctx.drawImage(tempImg, 0, 0);
+
+                    // 转换为base64
+                    const base64 = canvas.toDataURL('image/png');
+
+                    // 替换原图片
+                    img.src = base64;
+                    img.setAttribute('data-converted', 'true');
+
+                    console.log(`图片 ${index} 转换为base64成功`);
+                    resolve();
+                } catch (error) {
+                    console.error(`图片 ${index} 转换失败:`, error);
+                    reject(error);
+                }
+            };
+
+            tempImg.onerror = () => {
+                console.warn(`图片 ${index} 加载失败，跳过转换`);
+                resolve(); // 不reject，继续处理其他图片
+            };
+
+            // 开始加载图片
+            tempImg.src = img.src;
+        });
+    }
+
     // 显示图片移除说明（用于提示用户为什么图片不在长图中）
     showImageRemovalNote() {
         const modal = document.getElementById('share-image-modal');
@@ -816,8 +927,8 @@ class ShareImageGenerator {
                 <div style="font-size: 32px; margin-bottom: 12px;">📝</div>
                 <div style="color: var(--primary, #5a67d8); font-size: 15px; font-weight: 500; margin-bottom: 10px;">长图生成说明</div>
                 <div style="color: #666; font-size: 13px; line-height: 1.5; max-width: 400px; margin: 0 auto;">
-                    为确保图片可以正常下载，长图中已移除所有图片元素。<br>
-                    您获得的是完整文本内容和结构的截图。
+                    本地图片已转换为base64格式，<br>
+                    跨域图片因安全限制无法显示。
                 </div>
             </div>
         `;
