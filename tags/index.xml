@@ -11,36 +11,8 @@
     </image>
     <generator>Hugo -- 0.155.2</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 19 Jan 2024 13:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 23 May 2022 16:32:19 +0800</lastBuildDate>
     <atom:link href="https://liugangjian.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Claude</title>
-      <link>https://liugangjian.github.io/tags/claude/</link>
-      <pubDate>Fri, 19 Jan 2024 13:00:00 +0800</pubDate>
-      <guid>https://liugangjian.github.io/tags/claude/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>MCP</title>
-      <link>https://liugangjian.github.io/tags/mcp/</link>
-      <pubDate>Fri, 19 Jan 2024 13:00:00 +0800</pubDate>
-      <guid>https://liugangjian.github.io/tags/mcp/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Slidev</title>
-      <link>https://liugangjian.github.io/tags/slidev/</link>
-      <pubDate>Fri, 19 Jan 2024 13:00:00 +0800</pubDate>
-      <guid>https://liugangjian.github.io/tags/slidev/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>交互式演示</title>
-      <link>https://liugangjian.github.io/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%BC%94%E7%A4%BA/</link>
-      <pubDate>Fri, 19 Jan 2024 13:00:00 +0800</pubDate>
-      <guid>https://liugangjian.github.io/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%BC%94%E7%A4%BA/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Git</title>
       <link>https://liugangjian.github.io/tags/git/</link>

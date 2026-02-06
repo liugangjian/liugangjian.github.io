@@ -7,7 +7,7 @@ Classes, methods, variables, parameters and packages in the Java language can be
 Unlike the Javadoc, <strong>Annotation</strong> can obtain annotation content through reflection.</p></blockquote><p>When the compiler generates class files, annotations can be embedded in bytecode.
 The Java virtual machine can retain the annotation content and obtain the annotation content at run time.
 Of course, it also supports custom Java annotations.</p><p>Java defines a set of annotations.
-There are 7 in total, 3 are in Java Lang, the remaining 4 knowed as <strong>meta annotations</strong> are in <em>Java.Lang.annotation</em>.</p><p><img src=../../images/download.jpg alt loading=lazy decoding=async>
+There are 7 in total, 3 are in Java Lang, the remaining 4 knowed as <strong>meta annotations</strong> are in <em>Java.Lang.annotation</em>.</p><p><img src=../../images/download_java.png alt="Java Annotations Structure" loading=lazy decoding=async>
 The annotations that act <strong>on the code</strong> are:</p><ul><li><code>@Override</code>
 checks whether the method is an override method. If it is found that its parent class or
 the referenced interface does not have this method, a compilation error will be reported.</li><li><code>@Deprecated</code>
@@ -94,8 +94,8 @@ otherwise, no login is required.</p><p>First define a LoginRequired annotation.<
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=nf>sourceA</span><span class=p>(){</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=s>&#34;you are visiting sourceA&#34;</span><span class=p>;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	
-</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nd>@LoginRequired</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w> </span><span class=nd>@LoginRequired</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@GetMapping</span><span class=p>(</span><span class=s>&#34;/sourceB&#34;</span><span class=p>)</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=nf>sourceB</span><span class=p>(){</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=s>&#34;you are visiting sourceB&#34;</span><span class=p>;</span><span class=w>
@@ -138,11 +138,11 @@ otherwise, no login is required.</p><p>First define a LoginRequired annotation.<
 </span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>response</span><span class=p>.</span><span class=na>getWriter</span><span class=p>().</span><span class=na>print</span><span class=p>(</span><span class=s>&#34;the source you are visiting needs logined&#34;</span><span class=p>);</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=kc>false</span><span class=p>;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	
+</span></span></span><span class=line><span class=cl><span class=w> 
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Override</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>postHandle</span><span class=p>(</span><span class=n>HttpServletRequest</span><span class=w> </span><span class=n>request</span><span class=p>,</span><span class=w> </span><span class=n>HttpServletResponse</span><span class=w> </span><span class=n>response</span><span class=p>,</span><span class=w> </span><span class=n>Object</span><span class=w> </span><span class=n>handler</span><span class=p>,</span><span class=w> </span><span class=n>ModelAndView</span><span class=w> </span><span class=n>modelAndView</span><span class=p>)</span><span class=w> </span><span class=kd>throws</span><span class=w> </span><span class=n>Exception</span><span class=w> </span><span class=p>{}</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    
-</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nd>@Override</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w> </span><span class=nd>@Override</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>afterCompletion</span><span class=p>(</span><span class=n>HttpServletRequest</span><span class=w> </span><span class=n>request</span><span class=p>,</span><span class=w> </span><span class=n>HttpServletResponse</span><span class=w> </span><span class=n>response</span><span class=p>,</span><span class=w> </span><span class=n>Object</span><span class=w> </span><span class=n>handler</span><span class=p>,</span><span class=w> </span><span class=n>Exception</span><span class=w> </span><span class=n>ex</span><span class=p>)</span><span class=w> </span><span class=kd>throws</span><span class=w> </span><span class=n>Exception</span><span class=w> </span><span class=p>{}</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
 </span></span></span></code></pre></td></tr></table></div></div><h3 id=3-annotation--aop--log-printing>3. Annotation + AOP = Log Printing<a hidden class=anchor aria-hidden=true href=#3-annotation--aop--log-printing>#</a></h3><p>First import the dependencies required by the aspect.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -150,8 +150,8 @@ otherwise, no login is required.</p><p>First define a LoginRequired annotation.<
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=line><span class=cl><span class=nt>&lt;dependency&gt;</span>
-</span></span><span class=line><span class=cl>	<span class=nt>&lt;groupId&gt;</span>org.springframework.boot<span class=nt>&lt;/groupId&gt;</span>
-</span></span><span class=line><span class=cl>	<span class=nt>&lt;artifactId&gt;</span>spring-boot-starter-aop<span class=nt>&lt;/artifactId&gt;</span>
+</span></span><span class=line><span class=cl> <span class=nt>&lt;groupId&gt;</span>org.springframework.boot<span class=nt>&lt;/groupId&gt;</span>
+</span></span><span class=line><span class=cl> <span class=nt>&lt;artifactId&gt;</span>spring-boot-starter-aop<span class=nt>&lt;/artifactId&gt;</span>
 </span></span><span class=line><span class=cl><span class=nt>&lt;/dependency&gt;</span>
 </span></span></code></pre></td></tr></table></div></div><p>Then define an annotation <code>@MyLog</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
@@ -193,12 +193,12 @@ otherwise, no login is required.</p><p>First define a LoginRequired annotation.<
 </span></span></span><span class=line><span class=cl><span class=nd>@Aspect</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=nd>@Component</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>MyLogAspect</span><span class=w> </span><span class=p>{</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=c1>// PointCut indicates that this is a pointcut, and @annotation indicates </span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=c1>// that this pointcut cuts to an annotation</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w> </span><span class=c1>// PointCut indicates that this is a pointcut, and @annotation indicates </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w> </span><span class=c1>// that this pointcut cuts to an annotation</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Pointcut</span><span class=p>(</span><span class=s>&#34;@annotation(me.zebin.demo.annotationdemo.aoplog.MyLog)&#34;</span><span class=p>)</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>logPointCut</span><span class=p>(){};</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    
-</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=c1>// around notify</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w> </span><span class=c1>// around notify</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Around</span><span class=p>(</span><span class=s>&#34;logPointCut()&#34;</span><span class=p>)</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>logAround</span><span class=p>(</span><span class=n>ProceedingJoinPoint</span><span class=w> </span><span class=n>joinPoint</span><span class=p>){</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c1>// access methodName</span><span class=w>
@@ -229,8 +229,7 @@ otherwise, no login is required.</p><p>First define a LoginRequired annotation.<
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=nf>sourceC</span><span class=p>(</span><span class=nd>@PathVariable</span><span class=p>(</span><span class=s>&#34;source_name&#34;</span><span class=p>)</span><span class=w> </span><span class=n>String</span><span class=w> </span><span class=n>sourceName</span><span class=p>){</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=s>&#34;you are visiting sourceC&#34;</span><span class=p>;</span><span class=w> 
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
-</span></span></span></code></pre></td></tr></table></div></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://liugangjian.github.io/tags/java/>Java</a></li><li><a href=https://liugangjian.github.io/tags/spring/>Spring</a></li></ul><nav class=paginav><a class=prev href=https://liugangjian.github.io/posts/hugo-automatic-deployment/><span class=title>« Prev</span><br><span>Hugo Automatic deployment</span>
-</a><a class=next href=https://liugangjian.github.io/posts/mcp-interactive-presentation/><span class=title>Next »</span><br><span>MCP Model Context Protocol - 交互式演示</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://liugangjian.github.io/>Gangjian Liu</a></span> ·
+</span></span></span></code></pre></td></tr></table></div></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://liugangjian.github.io/tags/java/>Java</a></li><li><a href=https://liugangjian.github.io/tags/spring/>Spring</a></li></ul><nav class=paginav><a class=prev href=https://liugangjian.github.io/posts/hugo-automatic-deployment/><span class=title>« Prev</span><br><span>Hugo Automatic deployment</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://liugangjian.github.io/>Gangjian Liu</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
