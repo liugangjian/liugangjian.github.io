@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 550" width="1000" height="550">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="stepGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a8d5f0"/>
+      <stop offset="100%" style="stop-color:#7ec0e6"/>
+    </linearGradient>
+    <linearGradient id="gridGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffebee"/>
+      <stop offset="100%" style="stop-color:#ffcdd2"/>
+    </linearGradient>
+    <linearGradient id="randomGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff3e0"/>
+      <stop offset="100%" style="stop-color:#ffe0b2"/>
+    </linearGradient>
+    <linearGradient id="bayesGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f5e9"/>
+      <stop offset="100%" style="stop-color:#c8e6c9"/>
+    </linearGradient>
+    <!-- Drop shadow -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="550" fill="#fafafa"/>
+  
+  <!-- Title -->
+  <text x="500" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#2c3e50">
+    Hyperparameter Tuning: Steppy Integration
+  </text>
+  
+  <!-- Outer dashed container -->
+  <rect x="60" y="100" width="880" height="280" rx="20" ry="20" fill="none" stroke="#d4a5d4" stroke-width="3" stroke-dasharray="10,6"/>
+  
+  <!-- Step labels above -->
+  <text x="190" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#9b59b6">Method 1</text>
+  <text x="500" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#9b59b6">Method 2 (Default)</text>
+  <text x="810" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#9b59b6">Method 3</text>
+  
+  <!-- Grid Search -->
+  <g transform="translate(80, 120)">
+    <rect width="220" height="140" rx="12" ry="12" fill="url(#gridGradient)" stroke="#e74c3c" stroke-width="2" filter="url(#shadow)"/>
+    <text x="110" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2c3e50">Grid Search</text>
+    <text x="110" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">Exhaustive</text>
+    <text x="110" y="95" text-anchor="middle" font-family="monospace" font-size="10" fill="#c0392b">for param in grid</text>
+    <text x="110" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#e74c3c">★ Coverage: All</text>
+  </g>
+  
+  <!-- Random Search -->
+  <g transform="translate(390, 120)">
+    <rect width="220" height="140" rx="12" ry="12" fill="url(#randomGradient)" stroke="#f39c12" stroke-width="2" filter="url(#shadow)"/>
+    <text x="110" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2c3e50">Random Search</text>
+    <text x="110" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">Sampled</text>
+    <text x="110" y="95" text-anchor="middle" font-family="monospace" font-size="10" fill="#d68910">random.sample()</text>
+    <text x="110" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#f39c12">★ Speed: Fast</text>
+  </g>
+  
+  <!-- Bayesian Optimization -->
+  <g transform="translate(700, 120)">
+    <rect width="220" height="140" rx="12" ry="12" fill="url(#bayesGradient)" stroke="#27ae60" stroke-width="2" filter="url(#shadow)"/>
+    <text x="110" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2c3e50">Bayesian Opt</text>
+    <text x="110" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">Intelligent</text>
+    <text x="110" y="95" text-anchor="middle" font-family="monospace" font-size="10" fill="#27ae60">scikit-optimize</text>
+    <text x="110" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#27ae60">★ Efficiency: Best</text>
+  </g>
+  
+  <!-- Labels below -->
+  <text x="190" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d" font-style="italic">slow, thorough</text>
+  <text x="500" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d" font-style="italic">balanced (recommended)</text>
+  <text x="810" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d" font-style="italic">smart, guided</text>
+  
+  <!-- Bottom description -->
+  <text x="500" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#7f8c8d">
+    BaseTransformer supports all methods via config: hyperparameter_search__method
+  </text>
+  
+  <!-- Comparison Table -->
+  <g transform="translate(200, 360)">
+    <!-- Header -->
+    <rect width="600" height="40" rx="8" fill="#5a7a94"/>
+    <text x="100" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">Method</text>
+    <text x="250" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">Coverage</text>
+    <text x="400" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">Speed</text>
+    <text x="520" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">Best For</text>
+    
+    <!-- Grid row -->
+    <rect y="42" width="600" height="38" fill="white" stroke="#ecf0f1"/>
+    <text x="100" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">Grid</text>
+    <text x="250" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">Complete</text>
+    <text x="400" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#e74c3c">Slow</text>
+    <text x="520" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">Small spaces</text>
+    
+    <!-- Random row -->
+    <rect y="82" width="600" height="38" fill="#f8f9fa" stroke="#ecf0f1"/>
+    <text x="100" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">Random</text>
+    <text x="250" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">Random sample</text>
+    <text x="400" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#f39c12">Fast</text>
+    <text x="520" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">Large spaces</text>
+    
+    <!-- Bayesian row -->
+    <rect y="122" width="600" height="38" fill="white" stroke="#ecf0f1"/>
+    <text x="100" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">Bayesian</text>
+    <text x="250" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">Guided search</text>
+    <text x="400" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#27ae60">Optimal</text>
+    <text x="520" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">Complex models</text>
+  </g>
+  
+  <!-- Legend box -->
+  <rect x="250" y="530" width="500" height="15" rx="5" fill="#f5f5f5" stroke="#ddd" stroke-width="1"/>
+  <text x="500" y="541" text-anchor="middle" font-family="monospace" font-size="9" fill="#555">
+    configs/neptune.yaml: hyperparameter_search__method: random | hyperparameter_search__runs: 100
+  </text>
+</svg>

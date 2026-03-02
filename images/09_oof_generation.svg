@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="1000" height="640">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e3f2fd"/>
+      <stop offset="100%" stop-color="#90caf9"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e8f5e9"/>
+      <stop offset="100%" stop-color="#a5d6a7"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f3e5f5"/>
+      <stop offset="100%" stop-color="#ce93d8"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff3e0"/>
+      <stop offset="100%" stop-color="#ffcc80"/>
+    </linearGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrowHead" markerWidth="12" markerHeight="12" refX="9" refY="4" orient="auto">
+      <polygon points="0,0 12,4 0,8" fill="#7f8c8d"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="640" fill="#fafafa"/>
+  <text x="500" y="45" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="28" font-weight="700" fill="#2c3e50">OOF Generation</text>
+  <text x="500" y="72" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="13" fill="#7f8c8d" font-style="italic">Each sample is predicted by a model trained WITHOUT that sample</text>
+  <g transform="translate(50, 110)">
+    <rect width="280" height="160" rx="14" fill="url(#blueGrad)" stroke="#2196f3" stroke-width="2.5" filter="url(#softShadow)"/>
+    <text x="140" y="45" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#1565c0">K-Fold Split</text>
+    <text x="140" y="75" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="12" fill="#424242">StratifiedKFold</text>
+    <text x="140" y="100" text-anchor="middle" font-family="SFMono-Regular, Monaco, monospace" font-size="11" fill="#616161">n_splits = K</text>
+    <text x="140" y="125" text-anchor="middle" font-family="SFMono-Regular, Monaco, monospace" font-size="11" fill="#616161">train_idx / valid_idx</text>
+  </g>
+  <line x1="330" y1="190" x2="370" y2="190" stroke="#7f8c8d" stroke-width="3" marker-end="url(#arrowHead)"/>
+  <g transform="translate(370, 110)">
+    <rect width="280" height="160" rx="14" fill="url(#greenGrad)" stroke="#4caf50" stroke-width="2.5" filter="url(#softShadow)"/>
+    <text x="140" y="45" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#2e7d32">Train Model</text>
+    <text x="140" y="75" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="12" fill="#424242">Fit on training fold</text>
+    <text x="140" y="100" text-anchor="middle" font-family="SFMono-Regular, Monaco, monospace" font-size="10" fill="#616161">_fold_fit_evaluate_predict_loop()</text>
+    <text x="140" y="125" text-anchor="middle" font-family="SFMono-Regular, Monaco, monospace" font-size="11" fill="#616161">model.fit(X_train, y_train)</text>
+  </g>
+  <line x1="650" y1="190" x2="690" y2="190" stroke="#7f8c8d" stroke-width="3" marker-end="url(#arrowHead)"/>
+  <g transform="translate(690, 110)">
+    <rect width="260" height="160" rx="14" fill="url(#orangeGrad)" stroke="#ff9800" stroke-width="2.5" filter="url(#softShadow)"/>
+    <text x="130" y="45" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#e65100">Predict</text>
+    <text x="130" y="75" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="12" fill="#424242">Validation + Test set</text>
+    <text x="130" y="100" text-anchor="middle" font-family="SFMono-Regular, Monaco, monospace" font-size="11" fill="#616161">y_valid_pred</text>
+    <text x="130" y="125" text-anchor="middle" font-family="SFMono-Regular, Monaco, monospace" font-size="11" fill="#616161">y_test_pred</text>
+  </g>
+  <g transform="translate(50, 290)">
+    <rect width="900" height="50" rx="10" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1.5"/>
+    <text x="450" y="32" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="14" font-weight="600" fill="#616161">Repeat for each fold: fold_id = 0, 1, 2, ..., K-1</text>
+  </g>
+  <line x1="500" y1="340" x2="500" y2="370" stroke="#9c27b0" stroke-width="4" marker-end="url(#arrowHead)"/>
+  <g transform="translate(100, 380)">
+    <rect width="800" height="220" rx="16" fill="url(#purpleGrad)" stroke="#9c27b0" stroke-width="3" filter="url(#softShadow)"/>
+    <text x="400" y="38" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="20" font-weight="700" fill="#6a1b9a">OOF Predictions Matrix</text>
+    <g transform="translate(40, 60)">
+      <rect width="350" height="120" rx="12" fill="white" stroke="#ce93d8" stroke-width="2" filter="url(#softShadow)"/>
+      <text x="175" y="30" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700" fill="#6a1b9a">Training OOF Predictions</text>
+      <text x="175" y="55" text-anchor="middle" font-family="SFMono-Regular, Monaco, monospace" font-size="10" fill="#757575">Columns: SK_ID_CURR, fold_id, {model}_prediction</text>
+      <text x="175" y="80" text-anchor="middle" font-family="SFMono-Regular, Monaco, monospace" font-size="10" fill="#9e9e9e">Output: {pipeline}_out_of_fold_train_predictions.csv</text>
+      <text x="175" y="105" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="11" fill="#616161">Concatenate predictions from all folds</text>
+    </g>
+    <g transform="translate(410, 60)">
+      <rect width="350" height="120" rx="12" fill="white" stroke="#ce93d8" stroke-width="2" filter="url(#softShadow)"/>
+      <text x="175" y="30" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700" fill="#6a1b9a">Test OOF Predictions</text>
+      <text x="175" y="55" text-anchor="middle" font-family="SFMono-Regular, Monaco, monospace" font-size="10" fill="#757575">Columns: SK_ID_CURR, fold_id, {model}_prediction</text>
+      <text x="175" y="80" text-anchor="middle" font-family="SFMono-Regular, Monaco, monospace" font-size="10" fill="#9e9e9e">Output: {pipeline}_out_of_fold_test_predictions.csv</text>
+      <text x="175" y="105" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="11" fill="#616161">Aggregate: mean / gmean / rank_mean</text>
+    </g>
+  </g>
+  <text x="500" y="625" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="11" fill="#9e9e9e">Used as input for Stacking / Meta-Learner</text>
+</svg>

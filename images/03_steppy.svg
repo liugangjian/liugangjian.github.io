@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 550" width="1000" height="550">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="stepGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a8d5f0"/>
+      <stop offset="100%" style="stop-color:#7ec0e6"/>
+    </linearGradient>
+    <linearGradient id="headerGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9b59b6"/>
+      <stop offset="100%" style="stop-color:#8e44ad"/>
+    </linearGradient>
+    <!-- Drop shadow -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="550" fill="#fafafa"/>
+  
+  <!-- Title -->
+  <text x="500" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#2c3e50">
+    Steppy Framework: BaseTransformer &amp; Step
+  </text>
+  
+  <!-- Outer dashed container -->
+  <rect x="80" y="120" width="840" height="220" rx="20" ry="20" fill="none" stroke="#d4a5d4" stroke-width="3" stroke-dasharray="10,6"/>
+  
+  <!-- Step labels above -->
+  <text x="220" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#9b59b6">Step 1</text>
+  <text x="500" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#9b59b6">Step 2</text>
+  <text x="780" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#9b59b6">Step 3</text>
+  
+  <!-- Transformer A -->
+  <g transform="translate(110, 140)">
+    <rect width="220" height="120" rx="12" ry="12" fill="url(#stepGradient)" stroke="#5a7a94" stroke-width="2" filter="url(#shadow)"/>
+    <text x="110" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2c3e50">Transformer A</text>
+  </g>
+  
+  <!-- Arrow A to B -->
+  <path d="M 340 200 L 380 200" fill="none" stroke="#7f8c8d" stroke-width="3"/>
+  <polygon points="380,200 370,195 370,205" fill="#7f8c8d"/>
+  
+  <!-- Transformer B -->
+  <g transform="translate(390, 140)">
+    <rect width="220" height="120" rx="12" ry="12" fill="url(#stepGradient)" stroke="#5a7a94" stroke-width="2" filter="url(#shadow)"/>
+    <text x="110" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2c3e50">Transformer B</text>
+  </g>
+  
+  <!-- Arrow B to C -->
+  <path d="M 620 200 L 660 200" fill="none" stroke="#7f8c8d" stroke-width="3"/>
+  <polygon points="660,200 650,195 650,205" fill="#7f8c8d"/>
+  
+  <!-- Transformer C -->
+  <g transform="translate(670, 140)">
+    <rect width="220" height="120" rx="12" ry="12" fill="url(#stepGradient)" stroke="#5a7a94" stroke-width="2" filter="url(#shadow)"/>
+    <text x="110" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2c3e50">Transformer C</text>
+  </g>
+  
+  <!-- fit() / transform() labels below -->
+  <text x="220" y="295" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d" font-style="italic">fit() / transform()</text>
+  <text x="500" y="295" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d" font-style="italic">fit() / transform()</text>
+  <text x="780" y="295" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d" font-style="italic">fit() / transform()</text>
+  
+  <!-- Bottom description -->
+  <text x="500" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#7f8c8d">
+    BaseTransformer: fit() + transform() → dict output
+  </text>
+  
+  <!-- Legend box -->
+  <rect x="200" y="440" width="600" height="80" rx="8" fill="#f5f5f5" stroke="#ddd" stroke-width="1"/>
+  <text x="500" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Step Pattern:</text>
+  <text x="500" y="490" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#555">Each Step wraps a BaseTransformer and connects via Adapter pattern</text>
+  <text x="500" y="508" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#555">Input: dict → transform() → Output: dict (named features)</text>
+</svg>

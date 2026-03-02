@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 700" width="1100" height="700">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="stepGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a8d5f0"/>
+      <stop offset="100%" style="stop-color:#7ec0e6"/>
+    </linearGradient>
+    <linearGradient id="oofGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e3f2fd"/>
+      <stop offset="100%" style="stop-color:#bbdefb"/>
+    </linearGradient>
+    <linearGradient id="metaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8bbd9"/>
+      <stop offset="100%" style="stop-color:#f48fb1"/>
+    </linearGradient>
+    <linearGradient id="inputGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0e0e0"/>
+      <stop offset="100%" style="stop-color:#bdbdbd"/>
+    </linearGradient>
+    <!-- Drop shadow -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1100" height="700" fill="#fafafa"/>
+  
+  <!-- Title -->
+  <text x="550" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#2c3e50">
+    Stacking Pipeline
+  </text>
+  
+  <!-- Input Data -->
+  <g transform="translate(475, 90)">
+    <rect width="150" height="60" rx="8" fill="url(#inputGradient)" stroke="#757575" stroke-width="2" filter="url(#shadow)"/>
+    <text x="75" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#424242">Input Data</text>
+    <text x="75" y="45" text-anchor="middle" font-family="monospace" font-size="10" fill="#616161">X_train, y_train</text>
+  </g>
+  
+  <!-- Arrow down to Level 1 -->
+  <path d="M 550 150 L 550 180" fill="none" stroke="#9e9e9e" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="550,180 546,173 554,173" fill="#9e9e9e"/>
+  
+  <!-- Level 1 Container -->
+  <rect x="80" y="200" width="940" height="200" rx="15" fill="none" stroke="#d4a5d4" stroke-width="3" stroke-dasharray="10,5"/>
+  <text x="550" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#9b59b6">Level 1: Base Models</text>
+  
+  <!-- Base Model 1: LightGBM -->
+  <g transform="translate(120, 250)">
+    <rect width="180" height="120" rx="10" fill="url(#stepGradient)" stroke="#5a7a94" stroke-width="2" filter="url(#shadow)"/>
+    <text x="90" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">LightGBM</text>
+    <text x="90" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#546e7a">Model A</text>
+    <text x="90" y="85" text-anchor="middle" font-family="monospace" font-size="9" fill="#37474f">fit(X, y)</text>
+    <text x="90" y="102" text-anchor="middle" font-family="monospace" font-size="9" fill="#37474f">predict(X)</text>
+  </g>
+  
+  <!-- Base Model 2: XGBoost -->
+  <g transform="translate(340, 250)">
+    <rect width="180" height="120" rx="10" fill="url(#stepGradient)" stroke="#5a7a94" stroke-width="2" filter="url(#shadow)"/>
+    <text x="90" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">XGBoost</text>
+    <text x="90" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#546e7a">Model B</text>
+    <text x="90" y="85" text-anchor="middle" font-family="monospace" font-size="9" fill="#37474f">fit(X, y)</text>
+    <text x="90" y="102" text-anchor="middle" font-family="monospace" font-size="9" fill="#37474f">predict(X)</text>
+  </g>
+  
+  <!-- Base Model 3: CatBoost -->
+  <g transform="translate(560, 250)">
+    <rect width="180" height="120" rx="10" fill="url(#stepGradient)" stroke="#5a7a94" stroke-width="2" filter="url(#shadow)"/>
+    <text x="90" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">CatBoost</text>
+    <text x="90" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#546e7a">Model C</text>
+    <text x="90" y="85" text-anchor="middle" font-family="monospace" font-size="9" fill="#37474f">fit(X, y)</text>
+    <text x="90" y="102" text-anchor="middle" font-family="monospace" font-size="9" fill="#37474f">predict(X)</text>
+  </g>
+  
+  <!-- Base Model 4: NeuralNet -->
+  <g transform="translate(780, 250)">
+    <rect width="180" height="120" rx="10" fill="url(#stepGradient)" stroke="#5a7a94" stroke-width="2" filter="url(#shadow)"/>
+    <text x="90" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">NeuralNet</text>
+    <text x="90" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#546e7a">Model D</text>
+    <text x="90" y="85" text-anchor="middle" font-family="monospace" font-size="9" fill="#37474f">fit(X, y)</text>
+    <text x="90" y="102" text-anchor="middle" font-family="monospace" font-size="9" fill="#37474f">predict(X)</text>
+  </g>
+  
+  <!-- Arrows to OOF -->
+  <path d="M 210 370 L 210 410" fill="none" stroke="#90a4ae" stroke-width="2"/>
+  <polygon points="210,410 206,403 214,403" fill="#90a4ae"/>
+  
+  <path d="M 430 370 L 430 410" fill="none" stroke="#90a4ae" stroke-width="2"/>
+  <polygon points="430,410 426,403 434,403" fill="#90a4ae"/>
+  
+  <path d="M 650 370 L 650 410" fill="none" stroke="#90a4ae" stroke-width="2"/>
+  <polygon points="650,410 646,403 654,403" fill="#90a4ae"/>
+  
+  <path d="M 870 370 L 870 410" fill="none" stroke="#90a4ae" stroke-width="2"/>
+  <polygon points="870,410 866,403 874,403" fill="#90a4ae"/>
+  
+  <!-- OOF Predictions -->
+  <g transform="translate(300, 420)">
+    <rect width="500" height="70" rx="10" fill="url(#oofGradient)" stroke="#42a5f5" stroke-width="2" filter="url(#shadow)"/>
+    <text x="250" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1565c0">OOF Predictions</text>
+    <text x="250" y="52" text-anchor="middle" font-family="monospace" font-size="11" fill="#424242">[lgb_pred, xgb_pred, cat_pred, nn_pred]</text>
+  </g>
+  
+  <!-- Arrow to Meta -->
+  <path d="M 550 490 L 550 520" fill="none" stroke="#ec407a" stroke-width="3"/>
+  <polygon points="550,520 545,513 555,513" fill="#ec407a"/>
+  
+  <!-- Meta Learner -->
+  <g transform="translate(400, 540)">
+    <rect width="300" height="100" rx="10" fill="url(#metaGradient)" stroke="#e91e63" stroke-width="3" filter="url(#shadow)"/>
+    <text x="150" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#880e4f">Meta Learner</text>
+    <text x="150" y="60" text-anchor="middle" font-family="monospace" font-size="10" fill="#424242">Level 2 Model</text>
+    <text x="150" y="80" text-anchor="middle" font-family="monospace" font-size="9" fill="#616161">fit(OOF_preds, y) → final_predict</text>
+  </g>
+  
+  <!-- Legend -->
+  <rect x="200" y="660" width="700" height="28" rx="5" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="550" y="678" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#616161">
+    Base models generate OOF predictions → Meta learner trains on stacked predictions → Final output
+  </text>
+</svg>

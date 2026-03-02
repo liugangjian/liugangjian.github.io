@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="stepGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a8d5f0"/>
+      <stop offset="100%" style="stop-color:#7ec0e6"/>
+    </linearGradient>
+    <linearGradient id="lgbGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f5e9"/>
+      <stop offset="100%" style="stop-color:#c8e6c9"/>
+    </linearGradient>
+    <linearGradient id="xgbGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff3e0"/>
+      <stop offset="100%" style="stop-color:#ffe0b2"/>
+    </linearGradient>
+    <linearGradient id="catGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f3e5f5"/>
+      <stop offset="100%" style="stop-color:#e1bee7"/>
+    </linearGradient>
+    <!-- Drop shadow -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="700" fill="#fafafa"/>
+  
+  <!-- Title -->
+  <text x="500" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#2c3e50">
+    Model Comparison: Steppy Pipeline Integration
+  </text>
+  
+  <!-- Outer dashed container -->
+  <rect x="80" y="280" width="840" height="260" rx="20" ry="20" fill="none" stroke="#d4a5d4" stroke-width="3" stroke-dasharray="10,6"/>
+  
+  <!-- Step labels above -->
+  <text x="220" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#9b59b6">Step 1</text>
+  <text x="500" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#9b59b6">Step 2</text>
+  <text x="780" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#9b59b6">Step 3</text>
+  
+  <!-- Step 1: LightGBM -->
+  <g transform="translate(110, 300)">
+    <rect width="220" height="140" rx="12" ry="12" fill="url(#lgbGradient)" stroke="#27ae60" stroke-width="2" filter="url(#shadow)"/>
+    <text x="110" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2c3e50">LightGBM</text>
+    <text x="110" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">★★★★★ Speed</text>
+    <text x="110" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">★★★★★ Memory</text>
+    <text x="110" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">★★★★☆ Accuracy</text>
+    <text x="110" y="125" text-anchor="middle" font-family="monospace" font-size="10" fill="#27ae60">fast, low-mem</text>
+  </g>
+  
+  <!-- Arrow 1 to 2 -->
+  <path d="M 340 370 L 380 370" fill="none" stroke="#7f8c8d" stroke-width="3"/>
+  <polygon points="380,370 370,365 370,375" fill="#7f8c8d"/>
+  
+  <!-- Step 2: XGBoost -->
+  <g transform="translate(390, 300)">
+    <rect width="220" height="140" rx="12" ry="12" fill="url(#xgbGradient)" stroke="#f39c12" stroke-width="2" filter="url(#shadow)"/>
+    <text x="110" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2c3e50">XGBoost</text>
+    <text x="110" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">★★★★★ Accuracy</text>
+    <text x="110" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">★★★★☆ Speed</text>
+    <text x="110" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">★★★☆☆ Memory</text>
+    <text x="110" y="125" text-anchor="middle" font-family="monospace" font-size="10" fill="#f39c12">popular, robust</text>
+  </g>
+  
+  <!-- Arrow 2 to 3 -->
+  <path d="M 620 370 L 660 370" fill="none" stroke="#7f8c8d" stroke-width="3"/>
+  <polygon points="660,370 650,365 650,375" fill="#7f8c8d"/>
+  
+  <!-- Step 3: CatBoost -->
+  <g transform="translate(670, 300)">
+    <rect width="220" height="140" rx="12" ry="12" fill="url(#catGradient)" stroke="#9b59b6" stroke-width="2" filter="url(#shadow)"/>
+    <text x="110" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2c3e50">CatBoost</text>
+    <text x="110" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">★★★★★ Category</text>
+    <text x="110" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">★★★★☆ Ease of Use</text>
+    <text x="110" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">★★★★☆ Accuracy</text>
+    <text x="110" y="125" text-anchor="middle" font-family="monospace" font-size="10" fill="#9b59b6">auto categorical</text>
+  </g>
+  
+  <!-- Method labels below steps -->
+  <text x="220" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d" font-style="italic">fit() / predict()</text>
+  <text x="500" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d" font-style="italic">fit() / predict()</text>
+  <text x="780" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d" font-style="italic">fit() / predict()</text>
+  
+  <!-- Comparison Table (Top) -->
+  <g transform="translate(150, 80)">
+    <!-- Table header -->
+    <rect width="700" height="40" rx="8" ry="8" fill="#5a7a94" filter="url(#shadow)"/>
+    <text x="150" y="26" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Metric</text>
+    <text x="350" y="26" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">LightGBM</text>
+    <text x="520" y="26" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">XGBoost</text>
+    <text x="650" y="26" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">CatBoost</text>
+    
+    <!-- Row 1: Speed -->
+    <rect x="0" y="42" width="700" height="32" fill="#f9f9f9"/>
+    <text x="150" y="63" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">Speed</text>
+    <text x="350" y="63" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#f39c12">★★★★★</text>
+    <text x="520" y="63" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#f39c12">★★★★☆</text>
+    <text x="650" y="63" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#f39c12">★★★☆☆</text>
+    
+    <!-- Row 2: Accuracy -->
+    <rect x="0" y="76" width="700" height="32" fill="white"/>
+    <text x="150" y="97" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">Accuracy</text>
+    <text x="350" y="97" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#f39c12">★★★★☆</text>
+    <text x="520" y="97" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#f39c12">★★★★★</text>
+    <text x="650" y="97" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#f39c12">★★★★☆</text>
+    
+    <!-- Row 3: Category Support -->
+    <rect x="0" y="110" width="700" height="32" fill="#f9f9f9"/>
+    <text x="150" y="131" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">Category</text>
+    <text x="350" y="131" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#f39c12">★★★★☆</text>
+    <text x="520" y="131" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#f39c12">★★★☆☆</text>
+    <text x="650" y="131" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#f39c12">★★★★★</text>
+    
+    <!-- Row 4: Memory -->
+    <rect x="0" y="144" width="700" height="32" fill="white"/>
+    <text x="150" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">Memory</text>
+    <text x="350" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#f39c12">★★★★★</text>
+    <text x="520" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#f39c12">★★★☆☆</text>
+    <text x="650" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#f39c12">★★★★☆</text>
+  </g>
+  
+  <!-- Model Features Detail (Bottom) -->
+  <g transform="translate(100, 510)">
+    <!-- LightGBM Features -->
+    <g transform="translate(0, 0)">
+      <rect width="180" height="110" rx="8" fill="#e8f5e9" stroke="#27ae60" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="90" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#2c3e50">LightGBM Features</text>
+      <text x="90" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">• Histogram-based</text>
+      <text x="90" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">• Leaf-wise growth</text>
+      <text x="90" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">• GOSS/EFB</text>
+    </g>
+    
+    <!-- XGBoost Features -->
+    <g transform="translate(210, 0)">
+      <rect width="180" height="110" rx="8" fill="#fff3e0" stroke="#f39c12" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="90" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#2c3e50">XGBoost Features</text>
+      <text x="90" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">• Level-wise growth</text>
+      <text x="90" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">• Regularization</text>
+      <text x="90" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">• Column sampling</text>
+    </g>
+    
+    <!-- CatBoost Features -->
+    <g transform="translate(420, 0)">
+      <rect width="180" height="110" rx="8" fill="#f3e5f5" stroke="#9b59b6" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="90" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#2c3e50">CatBoost Features</text>
+      <text x="90" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">• Ordered boosting</text>
+      <text x="90" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">• Symmetric trees</text>
+      <text x="90" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">• GPU training</text>
+    </g>
+    
+    <!-- Unified Interface Box -->
+    <g transform="translate(620, 0)">
+      <rect width="180" height="110" rx="8" fill="#e3f2fd" stroke="#5a7a94" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="90" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#2c3e50">Steppy Interface</text>
+      <text x="90" y="50" text-anchor="middle" font-family="monospace" font-size="10" fill="#555">fit(X, y)</text>
+      <text x="90" y="70" text-anchor="middle" font-family="monospace" font-size="10" fill="#555">predict(X)</text>
+      <text x="90" y="90" text-anchor="middle" font-family="monospace" font-size="10" fill="#555">→ dict output</text>
+    </g>
+  </g>
+  
+  <!-- Bottom description -->
+  <text x="500" y="650" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#7f8c8d">
+    All three models extend BaseTransformer with unified fit() + predict() interface
+  </text>
+  
+  <!-- Legend box -->
+  <rect x="200" y="665" width="600" height="25" rx="6" fill="#f5f5f5" stroke="#ddd" stroke-width="1"/>
+  <text x="500" y="682" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">
+    ★★★★★ = Excellent | All models interchangeable in Steppy pipelines via Adapter pattern
+  </text>
+</svg>

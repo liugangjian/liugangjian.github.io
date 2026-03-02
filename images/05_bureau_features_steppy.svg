@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" width="1000" height="650">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="sourceGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecf0f1"/>
+      <stop offset="100%" style="stop-color:#bdc3c7"/>
+    </linearGradient>
+    <linearGradient id="transformGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a8d5f0"/>
+      <stop offset="100%" style="stop-color:#7ec0e6"/>
+    </linearGradient>
+    <linearGradient id="featureGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f5e9"/>
+      <stop offset="100%" style="stop-color:#a5d6a7"/>
+    </linearGradient>
+    <linearGradient id="headerGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9b59b6"/>
+      <stop offset="100%" style="stop-color:#8e44ad"/>
+    </linearGradient>
+    <!-- Drop shadow -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="650" fill="#fafafa"/>
+  
+  <!-- Title -->
+  <text x="500" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#2c3e50">
+    Bureau Feature Extraction: Steppy Pipeline
+  </text>
+  
+  <!-- Outer dashed container -->
+  <rect x="60" y="100" width="880" height="320" rx="20" ry="20" fill="none" stroke="#d4a5d4" stroke-width="3" stroke-dasharray="10,6"/>
+  
+  <!-- Step labels above -->
+  <text x="190" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#9b59b6">Step 1</text>
+  <text x="500" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#9b59b6">Step 2</text>
+  <text x="810" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#9b59b6">Step 3</text>
+  
+  <!-- Step 1: Source Data -->
+  <g transform="translate(80, 120)">
+    <rect width="220" height="140" rx="12" ry="12" fill="url(#sourceGradient)" stroke="#7f8c8d" stroke-width="2" filter="url(#shadow)"/>
+    <text x="110" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">BureauRaw</text>
+    <text x="110" y="65" text-anchor="middle" font-family="monospace" font-size="11" fill="#7f8c8d">SK_ID_CURR | DAYS...</text>
+    <text x="110" y="95" text-anchor="middle" font-family="monospace" font-size="12" fill="#2c3e50">100001 | 365 ...</text>
+    <text x="110" y="120" text-anchor="middle" font-family="monospace" font-size="12" fill="#2c3e50">100001 | 180 ...</text>
+  </g>
+  
+  <!-- Arrow 1 to 2 -->
+  <path d="M 310 190 L 360 190" fill="none" stroke="#7f8c8d" stroke-width="3"/>
+  <polygon points="360,190 350,185 350,195" fill="#7f8c8d"/>
+  
+  <!-- Step 2: GroupBy Transformer -->
+  <g transform="translate(380, 120)">
+    <rect width="240" height="140" rx="12" ry="12" fill="url(#transformGradient)" stroke="#5a7a94" stroke-width="2" filter="url(#shadow)"/>
+    <text x="120" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">GroupByAgg</text>
+    <text x="120" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d">groupby(SK_ID_CURR)</text>
+    <text x="120" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d">.agg(['count','sum'...])</text>
+    <text x="120" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">Multiple → Single Row</text>
+  </g>
+  
+  <!-- Arrow 2 to 3 -->
+  <path d="M 630 190 L 680 190" fill="none" stroke="#7f8c8d" stroke-width="3"/>
+  <polygon points="680,190 670,185 670,195" fill="#7f8c8d"/>
+  
+  <!-- Step 3: Feature Output -->
+  <g transform="translate(700, 120)">
+    <rect width="220" height="140" rx="12" ry="12" fill="url(#featureGradient)" stroke="#27ae60" stroke-width="2" filter="url(#shadow)"/>
+    <text x="110" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">BureauFeatures</text>
+    <text x="110" y="65" text-anchor="middle" font-family="monospace" font-size="11" fill="#2c3e50">count | sum | mean</text>
+    <text x="110" y="90" text-anchor="middle" font-family="monospace" font-size="11" fill="#2c3e50">max | min | std</text>
+    <text x="110" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#27ae60">dict output</text>
+  </g>
+  
+  <!-- fit() / transform() labels below steps -->
+  <text x="190" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d" font-style="italic">load_data()</text>
+  <text x="500" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d" font-style="italic">fit() / transform()</text>
+  <text x="810" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d" font-style="italic">transform()</text>
+  
+  <!-- Bottom description -->
+  <text x="500" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#7f8c8d">
+    BaseTransformer: Aggregates bureau records into statistical features
+  </text>
+  
+  <!-- Feature Categories Section -->
+  <g transform="translate(100, 380)">
+    <!-- Loan Stats -->
+    <g transform="translate(0, 0)">
+      <rect width="180" height="120" rx="8" fill="#e8f5e9" stroke="#27ae60" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="90" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2c3e50">Loan Stats</text>
+      <text x="90" y="55" text-anchor="middle" font-family="monospace" font-size="11" fill="#2c3e50">AMT_CREDIT_SUM</text>
+      <text x="90" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">count, sum, mean</text>
+      <text x="90" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">max, min</text>
+    </g>
+    
+    <!-- Overdue Stats -->
+    <g transform="translate(210, 0)">
+      <rect width="180" height="120" rx="8" fill="#ffebee" stroke="#e74c3c" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="90" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2c3e50">Overdue Stats</text>
+      <text x="90" y="55" text-anchor="middle" font-family="monospace" font-size="11" fill="#2c3e50">CREDIT_DAY_OVERDUE</text>
+      <text x="90" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">sum, max, count</text>
+      <text x="90" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">mean &gt; 0</text>
+    </g>
+    
+    <!-- Time Stats -->
+    <g transform="translate(420, 0)">
+      <rect width="180" height="120" rx="8" fill="#f3e5f5" stroke="#9b59b6" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="90" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2c3e50">Time Stats</text>
+      <text x="90" y="55" text-anchor="middle" font-family="monospace" font-size="11" fill="#2c3e50">DAYS_CREDIT</text>
+      <text x="90" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">min, max, mean</text>
+      <text x="90" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">std, enddate</text>
+    </g>
+    
+    <!-- Status Stats -->
+    <g transform="translate(630, 0)">
+      <rect width="170" height="120" rx="8" fill="#fff3e0" stroke="#f39c12" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="85" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2c3e50">Status Stats</text>
+      <text x="85" y="55" text-anchor="middle" font-family="monospace" font-size="11" fill="#2c3e50">CREDIT_ACTIVE</text>
+      <text x="85" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">Active ratio</text>
+      <text x="85" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">Type distribution</text>
+    </g>
+  </g>
+  
+  <!-- Legend box -->
+  <rect x="150" y="530" width="700" height="100" rx="8" fill="#f5f5f5" stroke="#ddd" stroke-width="1"/>
+  <text x="500" y="555" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">BureauFeatures Transformer Pattern:</text>
+  <text x="500" y="580" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#555">Input: dict with 'bureau' DataFrame → GroupBy on SK_ID_CURR → Aggregate statistics</text>
+  <text x="500" y="600" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#555">Output: dict with 'bureau_features' DataFrame (one row per SK_ID_CURR)</text>
+  <text x="500" y="620" text-anchor="middle" font-family="monospace" font-size="11" fill="#777">bureau.groupby('SK_ID_CURR').agg({'DAYS_CREDIT': ['min','max','mean'], 'AMT_CREDIT_SUM': ['sum','mean']})</text>
+</svg>

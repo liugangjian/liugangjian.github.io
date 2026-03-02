@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Hugo on Gangjian Liu</title>
-    <link>https://liugangjian.github.io/tags/hugo/</link>
+    <link>http://localhost:1313/tags/hugo/</link>
     <description>Recent content in Hugo on Gangjian Liu</description>
     <image>
       <title>Gangjian Liu</title>
-      <url>https://liugangjian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://liugangjian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.155.2</generator>
+    <generator>Hugo -- 0.157.0</generator>
     <language>en</language>
     <lastBuildDate>Thu, 20 Jan 2022 11:30:03 +0000</lastBuildDate>
-    <atom:link href="https://liugangjian.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo Automatic deployment</title>
-      <link>https://liugangjian.github.io/posts/hugo-automatic-deployment/</link>
+      <link>http://localhost:1313/posts/hugo-automatic-deployment/</link>
       <pubDate>Thu, 20 Jan 2022 11:30:03 +0000</pubDate>
-      <guid>https://liugangjian.github.io/posts/hugo-automatic-deployment/</guid>
+      <guid>http://localhost:1313/posts/hugo-automatic-deployment/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD.
 Build, test, and deploy your code right from GitHub. Make code reviews, branch management,
