@@ -2,6 +2,7 @@
 class ShareImageGenerator {
     constructor() {
         this.isGenerating = false;
+        this.currentScale = null;
         this.options = {
             scale: 2, // 高清图倍数
             backgroundColor: '#ffffff',
@@ -9,6 +10,10 @@ class ShareImageGenerator {
             qrSize: 120,
             footerHeight: 180
         };
+    }
+
+    getEffectiveScale() {
+        return this.currentScale || this.options.scale;
     }
 
     // 初始化
@@ -621,12 +626,18 @@ class ShareImageGenerator {
 
             const width = tempContainer.scrollWidth;
             const height = tempContainer.scrollHeight;
+            const maxCanvasSize = 16384;
+            const maxScaleByWidth = maxCanvasSize / width;
+            const maxScaleByHeight = maxCanvasSize / height;
+            const maxAllowedScale = Math.min(maxScaleByWidth, maxScaleByHeight);
+            const effectiveScale = Math.max(0.25, Math.min(this.options.scale, maxAllowedScale));
+            this.currentScale = effectiveScale;
 
-            console.log('截图尺寸:', { width, height, removedImages: images.length, iframeCount: iframes.length });
+            console.log('截图尺寸:', { width, height, scale: effectiveScale, removedImages: images.length, iframeCount: iframes.length });
 
             // 优化配置，支持本地图片显示
             const canvas = await html2canvas(tempContainer, {
-                scale: this.options.scale,
+                scale: effectiveScale,
                 backgroundColor: '#ffffff',
                 useCORS: true,
                 allowTaint: true,
@@ -674,7 +685,7 @@ class ShareImageGenerator {
     // 生成二维码
     generateQRCode(url) {
         return new Promise((resolve, reject) => {
-            const size = this.options.qrSize * this.options.scale;
+            const size = this.options.qrSize * this.getEffectiveScale();
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
 
@@ -729,8 +740,8 @@ class ShareImageGenerator {
 
     // 合成图片
     combineImage(articleCanvas, qrCanvas) {
-        const padding = this.options.padding * this.options.scale;
-        const footerHeight = this.options.footerHeight * this.options.scale;
+        const padding = this.options.padding * this.getEffectiveScale();
+        const footerHeight = this.options.footerHeight * this.getEffectiveScale();
 
         const finalWidth = articleCanvas.width;
         const finalHeight = articleCanvas.height + padding + footerHeight;
@@ -768,19 +779,19 @@ class ShareImageGenerator {
 
         // 绘制文字信息
         ctx.fillStyle = '#333333';
-        ctx.font = `bold ${16 * this.options.scale}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
-        ctx.fillText('扫码阅读原文', padding, footerY + 40 * this.options.scale);
+        ctx.font = `bold ${16 * this.getEffectiveScale()}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
+        ctx.fillText('扫码阅读原文', padding, footerY + 40 * this.getEffectiveScale());
 
-        ctx.font = `${14 * this.options.scale}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
+        ctx.font = `${14 * this.getEffectiveScale()}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
         ctx.fillStyle = '#666666';
-        ctx.fillText('来自 Gangjian Liu 的博客', padding, footerY + 70 * this.options.scale);
+        ctx.fillText('来自 Gangjian Liu 的博客', padding, footerY + 70 * this.getEffectiveScale());
 
         // 绘制URL
-        ctx.font = `${12 * this.options.scale}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
+        ctx.font = `${12 * this.getEffectiveScale()}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
         ctx.fillStyle = '#999999';
         const url = window.location.href;
         const maxWidth = qrX - padding * 2;
-        ctx.fillText(this.truncateText(ctx, url, maxWidth), padding, footerY + 95 * this.options.scale);
+        ctx.fillText(this.truncateText(ctx, url, maxWidth), padding, footerY + 95 * this.getEffectiveScale());
 
         return finalCanvas;
     }
