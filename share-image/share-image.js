@@ -2,7 +2,6 @@
 class ShareImageGenerator {
     constructor() {
         this.isGenerating = false;
-        this.currentScale = null;
         this.options = {
             scale: 2, // 高清图倍数
             backgroundColor: '#ffffff',
@@ -10,10 +9,6 @@ class ShareImageGenerator {
             qrSize: 120,
             footerHeight: 180
         };
-    }
-
-    getEffectiveScale() {
-        return this.currentScale || this.options.scale;
     }
 
     // 初始化
@@ -24,11 +19,20 @@ class ShareImageGenerator {
 
     // 创建分享按钮
     createShareButton() {
+        console.log('ShareImage: Creating share button');
         // 检查是否是文章页面
-        if (!this.isArticlePage()) return;
-
+        if (!this.isArticlePage()) {
+            console.log('ShareImage: Not an article page, skipping button');
+            return;
+        }
+        console.log('ShareImage: Creating share buttons for article page');
+        
         // 检测现有返回顶部按钮的位置
         const existingTopLink = document.querySelector('.top-link');
+        
+        // 创建悬浮按钮容器
+        
+        // 创建悬浮按钮容器
 
         // 创建悬浮按钮容器
         const floatingContainer = document.createElement('div');
@@ -442,6 +446,29 @@ class ShareImageGenerator {
 
     // 检查是否是文章页面
     isArticlePage() {
+        // 检查URL路径或文章内容元素
+        const path = window.location.pathname;
+        const hasPostContent = !!document.querySelector('.post-content');
+        const hasContentClass = !!document.querySelector('.content');
+        console.log('ShareImage: Checking path:', path, 'hasPostContent:', hasPostContent, 'hasContentClass:', hasContentClass);
+        // 宽松模式：检查多种可能性
+        const isPostsPage = path.includes('/posts/') || path.includes('/post/');
+        const isPagePath = path.includes('/page/'); // 即分页不显示
+        
+        // 综合判断：posts路径且非分页 + 页面包含内容元素之一
+        const isArticle = (isPostsPage && !isPagePath) || hasPostContent;
+        console.log('ShareImage: isPostsPage:', isPostsPage, 'isPagePath:', isPagePath, 'isArticle:', isArticle);
+        return isArticle;
+    }
+    isArticlePage() {
+        // 检查URL路径或文章内容元素
+        const path = window.location.pathname;
+        const hasPostContent = !!document.querySelector('.post-content');
+        const isArticle = (path.includes('/posts/') || path.includes('/post/')) && !path.includes('/page/');
+        console.log('ShareImage: Checking path:', path, 'hasContent:', hasPostContent);
+        return isArticle || hasPostContent;
+    }
+    isArticlePage() {
         // 检查URL路径
         const path = window.location.pathname;
         console.log('ShareImage: Checking path:', path);
@@ -626,12 +653,9 @@ class ShareImageGenerator {
 
             const width = tempContainer.scrollWidth;
             const height = tempContainer.scrollHeight;
-            const maxCanvasSize = 16384;
-            const maxScaleByWidth = maxCanvasSize / width;
-            const maxScaleByHeight = maxCanvasSize / height;
-            const maxAllowedScale = Math.min(maxScaleByWidth, maxScaleByHeight);
-            const effectiveScale = Math.max(0.25, Math.min(this.options.scale, maxAllowedScale));
-            this.currentScale = effectiveScale;
+            
+            // 固定使用高清质量 scale=2
+            const effectiveScale = this.options.scale;
 
             console.log('截图尺寸:', { width, height, scale: effectiveScale, removedImages: images.length, iframeCount: iframes.length });
 
@@ -685,7 +709,7 @@ class ShareImageGenerator {
     // 生成二维码
     generateQRCode(url) {
         return new Promise((resolve, reject) => {
-            const size = this.options.qrSize * this.getEffectiveScale();
+            const size = this.options.qrSize * this.options.scale;
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
 
@@ -738,255 +762,144 @@ class ShareImageGenerator {
         });
     }
 
-    // 合成图片
+    // 合成图片 - 固定尺寸 800px 宽度，50%文章长度后渐变截断
     combineImage(articleCanvas, qrCanvas) {
-        const padding = this.options.padding * this.getEffectiveScale();
-        const footerHeight = this.options.footerHeight * this.getEffectiveScale();
-
-        const finalWidth = articleCanvas.width;
-        const finalHeight = articleCanvas.height + padding + footerHeight;
-
+        const targetWidth = 800; // 固定输出宽度
+        const footerHeight = 180; // 底部固定高度
+        const gradientHeight = 120; // 渐变遮罩高度
+        const padding = 40;
+        
+        // 计算内容缩放比例（文章canvas是高清的，需要缩放到目标宽度）
+        const contentScale = targetWidth / articleCanvas.width;
+        const scaledContentHeight = articleCanvas.height * contentScale;
+        
+        // 自适应截断：在文章长度的50%处截断
+        const truncateRatio = 0.5; // 50%处截断
+        const maxContentHeight = scaledContentHeight * truncateRatio;
+        
+        // 判断是否需要截断（如果50%处已经超过最小高度才截断）
+        const minHeight = 800; // 最小内容高度
+        const needsTruncate = scaledContentHeight > minHeight;
+        const actualContentHeight = needsTruncate ? Math.min(maxContentHeight, scaledContentHeight) : scaledContentHeight;
+        
+        // 总高度 = 内容 + 渐变遮罩（统一都有）+ 底部
+        const finalHeight = actualContentHeight + gradientHeight + footerHeight;
         const finalCanvas = document.createElement('canvas');
-        finalCanvas.width = finalWidth;
+        finalCanvas.width = targetWidth;
         finalCanvas.height = finalHeight;
-
+        
         const ctx = finalCanvas.getContext('2d');
-
+        
         // 白色背景
         ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, finalWidth, finalHeight);
-
-        // 绘制文章内容
+        ctx.fillRect(0, 0, targetWidth, finalHeight);
+        
+        // 绘制文章内容（按比例缩放）
+        ctx.save();
+        // 创建裁剪区域，确保长文章被截断
+        ctx.beginPath();
+        ctx.rect(0, 0, targetWidth, actualContentHeight);
+        ctx.clip();
+        ctx.scale(contentScale, contentScale);
         ctx.drawImage(articleCanvas, 0, 0);
+        ctx.restore();
 
+        // 统一绘制渐变遮罩（不管长短都有）
+        const gradientY = actualContentHeight;
+        const gradient = ctx.createLinearGradient(0, gradientY, 0, gradientY + gradientHeight);
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 0)');
+        gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.7)');
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 1)');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, gradientY, targetWidth, gradientHeight);
+
+        // 统一绘制提示文字（不管长短都显示）
+        ctx.fillStyle = '#007AFF';
+        ctx.font = '500 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('👇 扫码阅读全文', targetWidth / 2, gradientY + gradientHeight - 20);
+        ctx.textAlign = 'left';
+        
         // 绘制底部区域
-        const footerY = articleCanvas.height;
+        const footerY = actualContentHeight + gradientHeight;
         ctx.fillStyle = '#f8f9fa';
-        ctx.fillRect(0, footerY, finalWidth, footerHeight);
-
+        ctx.fillRect(0, footerY, targetWidth, footerHeight);
+        
         // 绘制分割线
         ctx.strokeStyle = '#e9ecef';
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(0, footerY);
-        ctx.lineTo(finalWidth, footerY);
+        ctx.lineTo(targetWidth, footerY);
         ctx.stroke();
-
-        // 绘制二维码
-        const qrX = finalWidth - qrCanvas.width - padding;
-        const qrY = footerY + (footerHeight - qrCanvas.height) / 2;
-        ctx.drawImage(qrCanvas, qrX, qrY);
-
+        
+        // 绘制二维码（固定大小）
+        const qrSize = 100;
+        const qrX = targetWidth - qrSize - padding;
+        const qrY = footerY + (footerHeight - qrSize) / 2;
+        
+        // 二维码白色背景
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(qrX - 8, qrY - 8, qrSize + 16, qrSize + 16);
+        ctx.drawImage(qrCanvas, 0, 0, qrCanvas.width, qrCanvas.height, qrX, qrY, qrSize, qrSize);
+        
         // 绘制文字信息
-        ctx.fillStyle = '#333333';
-        ctx.font = `bold ${16 * this.getEffectiveScale()}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
-        ctx.fillText('扫码阅读原文', padding, footerY + 40 * this.getEffectiveScale());
-
-        ctx.font = `${14 * this.getEffectiveScale()}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
+        ctx.fillStyle = '#1a1a1a';
+        ctx.font = 'bold 16px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText('扫码阅读原文', padding, footerY + 50);
+        
+        ctx.font = '14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
         ctx.fillStyle = '#666666';
-        ctx.fillText('来自 Gangjian Liu 的博客', padding, footerY + 70 * this.getEffectiveScale());
-
+        ctx.fillText('来自 Gangjian Liu 的博客', padding, footerY + 80);
+        
         // 绘制URL
-        ctx.font = `${12 * this.getEffectiveScale()}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
+        ctx.font = '12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
         ctx.fillStyle = '#999999';
         const url = window.location.href;
-        const maxWidth = qrX - padding * 2;
-        ctx.fillText(this.truncateText(ctx, url, maxWidth), padding, footerY + 95 * this.getEffectiveScale());
-
+        const maxUrlWidth = qrX - padding * 2;
+        ctx.fillText(this.truncateText(ctx, url, maxUrlWidth), padding, footerY + 105);
+        
+        // 绘制阅读统计
+        const readCount = this.getEstimatedReadTime();
+        ctx.font = '12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillStyle = '#007AFF';
+        ctx.fillText(`📖 ${readCount}`, padding, footerY + 130);
+        
+        console.log('合成图片完成:', { width: targetWidth, height: finalHeight, needsTruncate, contentScale });
+        
         return finalCanvas;
     }
-
-    // 文字截断
-    truncateText(ctx, text, maxWidth) {
-        const ellipsis = '...';
-        let truncated = text;
-
-        if (ctx.measureText(text).width <= maxWidth) {
-            return text;
-        }
-
-        while (ctx.measureText(truncated + ellipsis).width > maxWidth && truncated.length > 0) {
-            truncated = truncated.slice(0, -1);
-        }
-
-        return truncated + ellipsis;
-    }
-
-    // 显示模态框
-    showModal() {
-        document.getElementById('share-image-modal').style.display = 'flex';
-        document.getElementById('share-status').style.display = 'block';
-        document.getElementById('share-result').style.display = 'none';
-    }
-
-    // 隐藏模态框
-    hideModal() {
-        document.getElementById('share-image-modal').style.display = 'none';
-    }
-
-    // 更新进度
-    updateProgress(percent) {
-        document.getElementById('progress-bar').style.width = percent + '%';
-    }
-
-    // 显示结果
-    showResult(canvas) {
-        document.getElementById('share-status').style.display = 'none';
-        document.getElementById('share-result').style.display = 'block';
-
-        const resultCanvas = document.getElementById('share-canvas');
-        resultCanvas.width = canvas.width;
-        resultCanvas.height = canvas.height;
-
-        const ctx = resultCanvas.getContext('2d');
-        ctx.drawImage(canvas, 0, 0);
-
-        // 绑定下载按钮
-        document.getElementById('download-btn').onclick = () => {
-            this.downloadImage(canvas);
-        };
-
-        // 绑定复制按钮
-        document.getElementById('copy-btn').onclick = () => {
-            this.copyLink();
-        };
-    }
-
-    // 显示错误
-    showError(message) {
-        document.getElementById('share-status').innerHTML = `
-            <div style="color: #f44336; font-size: 16px;">
-                <div style="font-size: 48px; margin-bottom: 16px;">❌</div>
-                <div>${message}</div>
-                <button onclick="location.reload()" style="margin-top: 20px; background: #f44336; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">重试</button>
-            </div>
-        `;
-    }
-
-    // 下载图片
-    downloadImage(canvas) {
-        try {
-            // 尝试创建高质量的PNG图片
-            const dataURL = canvas.toDataURL('image/png', 1.0);
-
-            const link = document.createElement('a');
-            link.download = `blog-share-${Date.now()}.png`;
-            link.href = dataURL;
-            link.click();
-        } catch (error) {
-            console.error('下载图片失败:', error);
-
-            // 如果因为CORS问题无法下载，提供备选方案
-            this.showDownloadError();
-        }
-    }
-
-      // 将图片转换为base64
-    convertImageToBase64(img, index) {
-        return new Promise((resolve, reject) => {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-
-            // 创建临时Image对象
-            const tempImg = new Image();
-            tempImg.crossOrigin = 'anonymous';
-
-            tempImg.onload = () => {
-                try {
-                    // 设置canvas尺寸
-                    canvas.width = tempImg.naturalWidth;
-                    canvas.height = tempImg.naturalHeight;
-
-                    // 绘制图片到canvas
-                    ctx.drawImage(tempImg, 0, 0);
-
-                    // 转换为base64
-                    const base64 = canvas.toDataURL('image/png');
-
-                    // 替换原图片
-                    img.src = base64;
-                    img.setAttribute('data-converted', 'true');
-
-                    console.log(`图片 ${index} 转换为base64成功`);
-                    resolve();
-                } catch (error) {
-                    console.error(`图片 ${index} 转换失败:`, error);
-                    reject(error);
-                }
-            };
-
-            tempImg.onerror = () => {
-                console.warn(`图片 ${index} 加载失败，跳过转换`);
-                resolve(); // 不reject，继续处理其他图片
-            };
-
-            // 开始加载图片
-            tempImg.src = img.src;
-        });
-    }
-
-    // 显示图片移除说明（用于提示用户为什么图片不在长图中）
-    showImageRemovalNote() {
-        const modal = document.getElementById('share-image-modal');
-        const resultDiv = document.getElementById('share-result');
-        const statusDiv = document.getElementById('share-status');
-
-        // 显示说明信息
-        statusDiv.style.display = 'block';
-        statusDiv.innerHTML = `
-            <div style="text-align: center; padding: 20px;">
-                <div style="font-size: 32px; margin-bottom: 12px;">📝</div>
-                <div style="color: var(--primary, #5a67d8); font-size: 15px; font-weight: 500; margin-bottom: 10px;">长图生成说明</div>
-                <div style="color: #666; font-size: 13px; line-height: 1.5; max-width: 400px; margin: 0 auto;">
-                    本地图片已转换为base64格式，<br>
-                    跨域图片因安全限制无法显示。
-                </div>
-            </div>
-        `;
-
-        resultDiv.style.display = 'none';
-    }
-
-    // 复制链接
-    copyLink() {
-        navigator.clipboard.writeText(window.location.href).then(() => {
-            const btn = document.getElementById('copy-btn');
-            const originalText = btn.textContent;
-            btn.textContent = '已复制!';
-            btn.style.background = '#4CAF50';
-
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = '#2196F3';
-            }, 2000);
-        }).catch(() => {
-            alert('复制失败，请手动复制链接');
-        });
+    
+    // 获取预估阅读时间
+    getEstimatedReadTime() {
+        const content = document.querySelector('.post-content');
+        if (!content) return '阅读约 3 分钟';
+        
+        const text = content.innerText || '';
+        const wordCount = text.length;
+        const readTime = Math.ceil(wordCount / 300);
+        return `阅读约 ${Math.max(1, readTime)} 分钟`;
     }
 }
 
-// 立即隐藏原有的返回顶部按钮，避免闪烁
-(function() {
-    const originalTopLink = document.querySelector('.top-link');
-    if (originalTopLink) {
-        originalTopLink.style.display = 'none';
-    }
-})();
-
-// 页面加载完成后初始化
+// 初始化长图分享功能
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('ShareImage: DOMContentLoaded fired');
-    // 等待其他库加载完成
-    setTimeout(() => {
-        console.log('ShareImage: Checking dependencies...');
-        console.log('html2canvas available:', typeof html2canvas !== 'undefined');
-        console.log('QRCode available:', typeof QRCode !== 'undefined');
-
-        if (typeof html2canvas !== 'undefined' && typeof QRCode !== 'undefined') {
-            console.log('ShareImage: All dependencies loaded, initializing...');
-            new ShareImageGenerator().init();
-        } else {
-            console.warn('ShareImage: 依赖库未加载');
-        }
-    }, 1000);
+    console.log('ShareImage: DOM Loaded, initializing...'); // 添加调试
+    // 检查条件
+    const pathCheck = window.location.pathname.includes('/posts/');
+    const hasContent = !!document.querySelector('.post-content');
+    console.log('ShareImage: path contains /posts/:', pathCheck, 'has .post-content:', hasContent);
+    
+    const shareImage = new ShareImageGenerator();
+    shareImage.init();
+    console.log('ShareImage: Generator initialized');
 });
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        const shareImage = new ShareImageGenerator();
+        shareImage.init();
+    });
+} else {
+    const shareImage = new ShareImageGenerator();
+    shareImage.init();
+}
