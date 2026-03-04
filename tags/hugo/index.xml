@@ -11,12 +11,12 @@
     </image>
     <generator>Hugo -- 0.157.0</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 20 Jan 2022 11:30:03 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Jan 2022 11:30:03 +0800</lastBuildDate>
     <atom:link href="https://liugangjian.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo Automatic deployment</title>
       <link>https://liugangjian.github.io/posts/hugo-automatic-deployment/</link>
-      <pubDate>Thu, 20 Jan 2022 11:30:03 +0000</pubDate>
+      <pubDate>Thu, 20 Jan 2022 11:30:03 +0800</pubDate>
       <guid>https://liugangjian.github.io/posts/hugo-automatic-deployment/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD.
