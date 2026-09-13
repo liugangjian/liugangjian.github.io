@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>金融 on Gangjian Liu</title>
+    <link>https://liugangjian.github.io/zh/tags/finance/</link>
+    <description>Recent content in 金融 on Gangjian Liu</description>
+    <image>
+      <title>Gangjian Liu</title>
+      <url>https://liugangjian.github.io/android-chrome-512x512.png</url>
+      <link>https://liugangjian.github.io/android-chrome-512x512.png</link>
+    </image>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 04 Mar 2026 15:30:00 +0800</lastBuildDate>
+    <atom:link href="https://liugangjian.github.io/zh/tags/finance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>高级特征工程框架：从理论到实践</title>
+      <link>https://liugangjian.github.io/zh/posts/advanced-feature-engineering-framework/</link>
+      <pubDate>Wed, 04 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/posts/advanced-feature-engineering-framework/</guid>
+      <description>系统介绍自动化特征工程、时间序列特征、交叉特征、特征选择与金融风控领域的特征构建方法。</description>
+    </item>
+  </channel>
+</rss>

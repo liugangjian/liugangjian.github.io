@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>集成学习 on Gangjian Liu</title>
+    <link>https://liugangjian.github.io/zh/tags/ensemble-learning/</link>
+    <description>Recent content in 集成学习 on Gangjian Liu</description>
+    <image>
+      <title>Gangjian Liu</title>
+      <url>https://liugangjian.github.io/android-chrome-512x512.png</url>
+      <link>https://liugangjian.github.io/android-chrome-512x512.png</link>
+    </image>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 02 Mar 2026 15:30:00 +0800</lastBuildDate>
+    <atom:link href="https://liugangjian.github.io/zh/tags/ensemble-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>信用风险预测技术指南</title>
+      <link>https://liugangjian.github.io/zh/posts/kaggle-home-credit-credit-risk-prediction-guide/</link>
+      <pubDate>Mon, 02 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/posts/kaggle-home-credit-credit-risk-prediction-guide/</guid>
+      <description>系统分析 Kaggle Home Credit Default Risk 竞赛方案，梳理从数据预处理、特征工程到模型集成的完整机器学习流程。</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>标签 on Gangjian Liu</title>
+    <link>https://liugangjian.github.io/zh/tags/</link>
+    <description>Recent content in 标签 on Gangjian Liu</description>
+    <image>
+      <title>Gangjian Liu</title>
+      <url>https://liugangjian.github.io/android-chrome-512x512.png</url>
+      <link>https://liugangjian.github.io/android-chrome-512x512.png</link>
+    </image>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 04 Mar 2026 15:30:00 +0800</lastBuildDate>
+    <atom:link href="https://liugangjian.github.io/zh/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>风险控制</title>
+      <link>https://liugangjian.github.io/zh/tags/risk-control/</link>
+      <pubDate>Wed, 04 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/risk-control/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>机器学习</title>
+      <link>https://liugangjian.github.io/zh/tags/machine-learning/</link>
+      <pubDate>Wed, 04 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>金融</title>
+      <link>https://liugangjian.github.io/zh/tags/finance/</link>
+      <pubDate>Wed, 04 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/finance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>时间序列</title>
+      <link>https://liugangjian.github.io/zh/tags/time-series/</link>
+      <pubDate>Wed, 04 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/time-series/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>特征工程</title>
+      <link>https://liugangjian.github.io/zh/tags/feature-engineering/</link>
+      <pubDate>Wed, 04 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/feature-engineering/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>特征选择</title>
+      <link>https://liugangjian.github.io/zh/tags/feature-selection/</link>
+      <pubDate>Wed, 04 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/feature-selection/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>自动化特征</title>
+      <link>https://liugangjian.github.io/zh/tags/automated-fe/</link>
+      <pubDate>Wed, 04 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/automated-fe/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CatBoost</title>
+      <link>https://liugangjian.github.io/zh/tags/catboost/</link>
+      <pubDate>Mon, 02 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/catboost/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kaggle</title>
+      <link>https://liugangjian.github.io/zh/tags/kaggle/</link>
+      <pubDate>Mon, 02 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/kaggle/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LightGBM</title>
+      <link>https://liugangjian.github.io/zh/tags/lightgbm/</link>
+      <pubDate>Mon, 02 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/lightgbm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>XGBoost</title>
+      <link>https://liugangjian.github.io/zh/tags/xgboost/</link>
+      <pubDate>Mon, 02 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/xgboost/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>堆叠集成</title>
+      <link>https://liugangjian.github.io/zh/tags/stacking/</link>
+      <pubDate>Mon, 02 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/stacking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>集成学习</title>
+      <link>https://liugangjian.github.io/zh/tags/ensemble-learning/</link>
+      <pubDate>Mon, 02 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/ensemble-learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>信用风险</title>
+      <link>https://liugangjian.github.io/zh/tags/credit-risk/</link>
+      <pubDate>Mon, 02 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/credit-risk/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Git</title>
+      <link>https://liugangjian.github.io/zh/tags/git/</link>
+      <pubDate>Mon, 23 May 2022 16:32:19 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/git/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub</title>
+      <link>https://liugangjian.github.io/zh/tags/github/</link>
+      <pubDate>Thu, 20 Jan 2022 11:30:03 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/github/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hugo</title>
+      <link>https://liugangjian.github.io/zh/tags/hugo/</link>
+      <pubDate>Thu, 20 Jan 2022 11:30:03 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/hugo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java</title>
+      <link>https://liugangjian.github.io/zh/tags/java/</link>
+      <pubDate>Tue, 18 Jan 2022 11:30:03 +0000</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Spring</title>
+      <link>https://liugangjian.github.io/zh/tags/spring/</link>
+      <pubDate>Tue, 18 Jan 2022 11:30:03 +0000</pubDate>
+      <guid>https://liugangjian.github.io/zh/tags/spring/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

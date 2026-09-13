@@ -6,35 +6,26 @@
     <description>Recent content on Gangjian Liu</description>
     <image>
       <title>Gangjian Liu</title>
-      <url>https://liugangjian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://liugangjian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://liugangjian.github.io/android-chrome-512x512.png</url>
+      <link>https://liugangjian.github.io/android-chrome-512x512.png</link>
     </image>
-    <generator>Hugo -- 0.165.0</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 02 Mar 2026 15:30:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 04 Mar 2026 15:30:00 +0800</lastBuildDate>
     <atom:link href="https://liugangjian.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A successful Git branching model</title>
       <link>https://liugangjian.github.io/posts/a-successful-git-branching-model/</link>
       <pubDate>Mon, 23 May 2022 16:32:19 +0800</pubDate>
       <guid>https://liugangjian.github.io/posts/a-successful-git-branching-model/</guid>
-      <description>&lt;h2 id=&#34;why-git&#34;&gt;Why git?&lt;/h2&gt;
-&lt;p&gt;For a thorough discussion on the pros and cons of Git compared to centralized source code control systems. As a developer, I prefer Git above all other tools around today. Git really changed the way developers think of merging and branching. From the classic CVS/Subversion world I came from, merging/branching has always been considered a bit scary and something you only do every once in a while.&lt;/p&gt;
-&lt;p&gt;As a consequence of its simplicity and repetitive nature, branching and merging are no longer something to be afraid of. Version control tools are supposed to assist in branching/merging more than anything else.&lt;/p&gt;</description>
+      <description>A practical guide to feature, release, and hotfix branches in a Git workflow.</description>
     </item>
     <item>
       <title>Hugo Automatic deployment</title>
       <link>https://liugangjian.github.io/posts/hugo-automatic-deployment/</link>
       <pubDate>Thu, 20 Jan 2022 11:30:03 +0800</pubDate>
       <guid>https://liugangjian.github.io/posts/hugo-automatic-deployment/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD.
-Build, test, and deploy your code right from GitHub. Make code reviews, branch management,
-and issue triaging work the way you want.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I use &lt;a href=&#34;https://github.com/peaceiris/actions-gh-pages/blob/main/README.md&#34;&gt;Github Actions&lt;/a&gt; to deploy site source files
-(eg: hugoBlog source) to GitHub Pages (eg: &lt;a href=&#34;https://github.com/liugangjian/liugangjian.github.io/tree/master/posts&#34;&gt;liugangjian.github.io&lt;/a&gt; ) &lt;mark&gt; automatically &lt;/mark&gt;.&lt;/p&gt;
-&lt;p&gt;My blog project architecture is shown below. In the figure we can clearly see there are three repositories.&lt;/p&gt;</description>
+      <description>Build a Hugo blog with GitHub Actions and deploy it automatically to GitHub Pages.</description>
     </item>
     <item>
       <title>Java Annotations Introduction</title>
@@ -42,6 +33,13 @@ and issue triaging work the way you want.&lt;/p&gt;
       <pubDate>Tue, 18 Jan 2022 11:30:03 +0000</pubDate>
       <guid>https://liugangjian.github.io/posts/java-annotations---introduction/</guid>
       <description>Mainly describes the difference and relationship between Java annotation, AOP and Interceptor.</description>
+    </item>
+    <item>
+      <title>Advanced Feature Engineering Framework: From Theory to Practice</title>
+      <link>https://liugangjian.github.io/posts/advanced-feature-engineering-framework/</link>
+      <pubDate>Wed, 04 Mar 2026 15:30:00 +0800</pubDate>
+      <guid>https://liugangjian.github.io/posts/advanced-feature-engineering-framework/</guid>
+      <description>A comprehensive framework covering advanced feature engineering methods including automation tools, time series techniques, cross-feature strategies, selection methods, and domain-specific features for finance and risk control.</description>
     </item>
     <item>
       <title>A Technical Guide to Credit Risk Prediction</title>
@@ -55,136 +53,21 @@ and issue triaging work the way you want.&lt;/p&gt;
       <link>https://liugangjian.github.io/about/</link>
       <pubDate>Mon, 01 Jan 2024 00:00:00 +0800</pubDate>
       <guid>https://liugangjian.github.io/about/</guid>
-      <description>&lt;div class=&#34;resume-header&#34;&gt;
-    &lt;div class=&#34;resume-avatar&#34;&gt;
-        &lt;!-- Replace with your actual avatar URL --&gt;
-        &lt;img src=&#34;https://github.com/liugangjian.png&#34; alt=&#34;Gangjian Liu&#34;&gt;
-    &lt;/div&gt;
-    &lt;div class=&#34;resume-info&#34;&gt;
-        &lt;h1&gt;Gavin Liu&lt;/h1&gt;
-        &lt;div class=&#34;tagline&#34;&gt;CreditRisk Modeling &amp;amp; Fintech&lt;/div&gt;
-        &lt;div class=&#34;social-links&#34; style=&#34;margin-top: 1rem;&#34;&gt;
-            &lt;a href=&#34;https://github.com/liugangjian&#34; target=&#34;_blank&#34; style=&#34;margin-right: 15px;&#34;&gt;GitHub&lt;/a&gt;
-            &lt;a href=&#34;mailto:liuangjian@pku.edu.cn&#34;&gt;Email&lt;/a&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&#34;resume-section&#34;&gt;
-    &lt;h2&gt;Experience&lt;/h2&gt;
-    &lt;div class=&#34;timeline&#34;&gt;
-
-         &lt;div class=&#34;timeline-item&#34;&gt;
-            &lt;img src=&#34;https://liugangjian.github.io/images/about/paobank_logo.jpeg&#34; alt=&#34;Ping An Digital Bank logo&#34; class=&#34;timeline-logo&#34;&gt;
-            &lt;div class=&#34;timeline-content&#34;&gt;
-                &lt;h3&gt;Ping An Digital Bank&lt;/h3&gt;
-                &lt;div class=&#34;role&#34;&gt;Data Modeler&lt;/div&gt;
-                &lt;div class=&#34;date&#34;&gt;Aug 2026 - Present&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;div class=&#34;timeline-item&#34;&gt;
-            &lt;img src=&#34;https://liugangjian.github.io/images/about/cf.png&#34; alt=&#34;Company Logo&#34; class=&#34;timeline-logo&#34;&gt;
-            &lt;div class=&#34;timeline-content&#34;&gt;
-                &lt;h3&gt;Hunan Chasing Financial Holdings Co., Ltd.&lt;/h3&gt;
-                &lt;div class=&#34;role&#34;&gt; Project Manager (On Secondment)&lt;/div&gt;
-                &lt;div class=&#34;date&#34;&gt;Jun 2024 - Aug 2026&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-
-
-        &lt;div class=&#34;timeline-item&#34;&gt;
-            &lt;img src=&#34;https://liugangjian.github.io/images/about/cf.png&#34; alt=&#34;Lab Logo&#34; class=&#34;timeline-logo&#34;&gt;
-            &lt;div class=&#34;timeline-content&#34;&gt;
-                &lt;h3&gt;Hunan Data Industry Group Co., Ltd.&lt;/h3&gt;
-                &lt;div class=&#34;role&#34;&gt; Software Development Engineer &lt;/div&gt;
-                &lt;div class=&#34;date&#34;&gt;Jul 2021 - Jun 2024&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;div class=&#34;timeline-item&#34;&gt;
-            &lt;img src=&#34;https://liugangjian.github.io/images/about/bytedance.png&#34; alt=&#34;Lab Logo&#34; class=&#34;timeline-logo&#34;&gt;
-            &lt;div class=&#34;timeline-content&#34;&gt;
-                &lt;h3&gt;ByteDance Ltd.&lt;/h3&gt;
-                &lt;div class=&#34;role&#34;&gt; Software Development Engineer (Intern) &lt;/div&gt;
-                &lt;span class=&#34;highlight-note&#34;&gt;✦ Received return offer for outstanding performance&lt;/span&gt;
-                &lt;div class=&#34;date&#34;&gt;Jun 2020 - Jun 2021&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&#34;resume-section&#34;&gt;
-    &lt;h2&gt;Education&lt;/h2&gt;
-    &lt;div class=&#34;timeline&#34;&gt;
-
-        &lt;div class=&#34;timeline-item&#34;&gt;
-            &lt;img src=&#34;https://liugangjian.github.io/images/about/thu.svg&#34; alt=&#34;PKU Logo&#34; class=&#34;timeline-logo&#34;&gt;
-            &lt;div class=&#34;timeline-content&#34;&gt;
-                &lt;h3&gt;Tsinghua University&lt;/h3&gt;
-                &lt;div class=&#34;role&#34;&gt;Master of Engineering Management&lt;/div&gt;
-                &lt;div class=&#34;date&#34;&gt;2024 - 2027 (Expected)&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;div class=&#34;timeline-item&#34;&gt;
-            &lt;img src=&#34;https://liugangjian.github.io/images/about/pku.png&#34; alt=&#34;University Logo&#34; class=&#34;timeline-logo&#34;&gt;
-            &lt;div class=&#34;timeline-content&#34;&gt;
-                &lt;h3&gt;Peking University&lt;/h3&gt;
-                &lt;div class=&#34;role&#34;&gt;Bachelor of Software Engineering&lt;/div&gt;
-                &lt;div class=&#34;date&#34;&gt;2019 - 2021&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-         &lt;div class=&#34;timeline-item&#34;&gt;
-            &lt;img src=&#34;https://liugangjian.github.io/images/about/xtu.png&#34; alt=&#34;University Logo&#34; class=&#34;timeline-logo&#34;&gt;
-            &lt;div class=&#34;timeline-content&#34;&gt;
-                &lt;h3&gt;Xiangtan University&lt;/h3&gt;
-                &lt;div class=&#34;role&#34;&gt;Bachelor of Materials Chemistry&lt;/div&gt;
-                &lt;div class=&#34;date&#34;&gt;2015 - 2019&lt;/div&gt;
-
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&#34;resume-section&#34;&gt;
-    &lt;h2&gt;Honors &amp; Awards&lt;/h2&gt;
-    &lt;div class=&#34;awards-grid&#34;&gt;
-        &lt;!-- &lt;div class=&#34;award-card&#34;&gt;
-            &lt;img src=&#34;https://liugangjian.github.io/images/about/k.png&#34; alt=&#34;Kaggle&#34; class=&#34;award-icon&#34;&gt;
-            &lt;div class=&#34;award-info&#34;&gt;
-                &lt;div class=&#34;award-title&#34;&gt;Kaggle Competition&lt;/div&gt;
-                &lt;div class=&#34;award-badge&#34;&gt;🥇 Gold Medalist&lt;/div&gt;
-                &lt;div class=&#34;award-date&#34;&gt;2026&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt; --&gt;
-        &lt;div class=&#34;award-card&#34;&gt;
-            &lt;img src=&#34;https://liugangjian.github.io/images/about/comap.png&#34; alt=&#34;COMAP&#34; class=&#34;award-icon&#34;&gt;
-            &lt;div class=&#34;award-info&#34;&gt;
-                &lt;div class=&#34;award-title&#34;&gt;MCM/ICM&lt;/div&gt;
-                &lt;div class=&#34;award-badge&#34;&gt;🏆 Meritorious Winner&lt;/div&gt;
-                &lt;div class=&#34;award-date&#34;&gt;2018,2020 (Student Mentor)&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&#34;award-card&#34;&gt;
-            &lt;img src=&#34;https://liugangjian.github.io/images/about/cumcm.png&#34; alt=&#34;CUMCM&#34; class=&#34;award-icon&#34;&gt;
-            &lt;div class=&#34;award-info&#34;&gt;
-                &lt;div class=&#34;award-title&#34;&gt;CUMCM&lt;/div&gt;
-                &lt;div class=&#34;award-badge&#34;&gt;🥈 National 2nd&lt;/div&gt;
-                &lt;div class=&#34;award-badge&#34;&gt;🥇 Provincial 1st&lt;/div&gt;
-                &lt;div class=&#34;award-date&#34;&gt;2018&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&#34;resume-section&#34;&gt;
-    &lt;h2&gt;Publications&lt;/h2&gt;
-    &lt;p class=&#34;section-note&#34;&gt;My early research journey in Materials Science before transitioning to CS.&lt;/p&gt;</description>
+      <description>My experience, education, honors, and research publications.</description>
+    </item>
+    <item>
+      <title>Articles</title>
+      <link>https://liugangjian.github.io/archives/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://liugangjian.github.io/archives/</guid>
+      <description>Notes on credit risk, data science, and software engineering.</description>
+    </item>
+    <item>
+      <title>Projects</title>
+      <link>https://liugangjian.github.io/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://liugangjian.github.io/projects/</guid>
+      <description>Selected studies and practical frameworks in credit risk modeling and feature engineering.</description>
     </item>
   </channel>
 </rss>

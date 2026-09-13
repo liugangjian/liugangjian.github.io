@@ -6,10 +6,10 @@
     <description>Recent content in Git on Gangjian Liu</description>
     <image>
       <title>Gangjian Liu</title>
-      <url>https://liugangjian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://liugangjian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://liugangjian.github.io/android-chrome-512x512.png</url>
+      <link>https://liugangjian.github.io/android-chrome-512x512.png</link>
     </image>
-    <generator>Hugo -- 0.165.0</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Mon, 23 May 2022 16:32:19 +0800</lastBuildDate>
     <atom:link href="https://liugangjian.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
@@ -18,9 +18,7 @@
       <link>https://liugangjian.github.io/posts/a-successful-git-branching-model/</link>
       <pubDate>Mon, 23 May 2022 16:32:19 +0800</pubDate>
       <guid>https://liugangjian.github.io/posts/a-successful-git-branching-model/</guid>
-      <description>&lt;h2 id=&#34;why-git&#34;&gt;Why git?&lt;/h2&gt;
-&lt;p&gt;For a thorough discussion on the pros and cons of Git compared to centralized source code control systems. As a developer, I prefer Git above all other tools around today. Git really changed the way developers think of merging and branching. From the classic CVS/Subversion world I came from, merging/branching has always been considered a bit scary and something you only do every once in a while.&lt;/p&gt;
-&lt;p&gt;As a consequence of its simplicity and repetitive nature, branching and merging are no longer something to be afraid of. Version control tools are supposed to assist in branching/merging more than anything else.&lt;/p&gt;</description>
+      <description>A practical guide to feature, release, and hotfix branches in a Git workflow.</description>
     </item>
   </channel>
 </rss>

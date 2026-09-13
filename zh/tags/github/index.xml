@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>GitHub on Gangjian Liu</title>
+    <link>https://liugangjian.github.io/zh/tags/github/</link>
+    <description>Recent content in GitHub on Gangjian Liu</description>
+    <image>
+      <title>Gangjian Liu</title>
+      <url>https://liugangjian.github.io/android-chrome-512x512.png</url>
+      <link>https://liugangjian.github.io/android-chrome-512x512.png</link>
+    </image>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 20 Jan 2022 11:30:03 +0800</lastBuildDate>
+    <atom:link href="https://liugangjian.github.io/zh/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo 自动部署</title>
+      <link>https://liugangjian.github.io/zh/posts/hugo-automatic-deployment/</link>
+      <pubDate>Thu, 20 Jan 2022 11:30:03 +0800</pubDate>
+      <guid>https://liugangjian.github.io/zh/posts/hugo-automatic-deployment/</guid>
+      <description>使用 GitHub Actions 构建 Hugo 博客，并自动发布到 GitHub Pages。</description>
+    </item>
+  </channel>
+</rss>

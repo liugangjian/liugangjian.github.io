@@ -6,10 +6,10 @@
     <description>Recent content in Hugo on Gangjian Liu</description>
     <image>
       <title>Gangjian Liu</title>
-      <url>https://liugangjian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://liugangjian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://liugangjian.github.io/android-chrome-512x512.png</url>
+      <link>https://liugangjian.github.io/android-chrome-512x512.png</link>
     </image>
-    <generator>Hugo -- 0.165.0</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Thu, 20 Jan 2022 11:30:03 +0800</lastBuildDate>
     <atom:link href="https://liugangjian.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
@@ -18,14 +18,7 @@
       <link>https://liugangjian.github.io/posts/hugo-automatic-deployment/</link>
       <pubDate>Thu, 20 Jan 2022 11:30:03 +0800</pubDate>
       <guid>https://liugangjian.github.io/posts/hugo-automatic-deployment/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD.
-Build, test, and deploy your code right from GitHub. Make code reviews, branch management,
-and issue triaging work the way you want.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I use &lt;a href=&#34;https://github.com/peaceiris/actions-gh-pages/blob/main/README.md&#34;&gt;Github Actions&lt;/a&gt; to deploy site source files
-(eg: hugoBlog source) to GitHub Pages (eg: &lt;a href=&#34;https://github.com/liugangjian/liugangjian.github.io/tree/master/posts&#34;&gt;liugangjian.github.io&lt;/a&gt; ) &lt;mark&gt; automatically &lt;/mark&gt;.&lt;/p&gt;
-&lt;p&gt;My blog project architecture is shown below. In the figure we can clearly see there are three repositories.&lt;/p&gt;</description>
+      <description>Build a Hugo blog with GitHub Actions and deploy it automatically to GitHub Pages.</description>
     </item>
   </channel>
 </rss>
